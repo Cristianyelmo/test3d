@@ -1,113 +1,114 @@
-import Image from "next/image";
+"use client";
+import { useEffect, useRef } from "react";
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import * as THREE from 'three';
 
 export default function Home() {
+  const modelRef = useRef(null);
+  const mixersRef = useRef([]); // Mantén esto como un array
+  const glbRef = useRef(null);
+  const clock = useRef(new THREE.Clock()); // Mueve el reloj fuera del useEffect
+
+  useEffect(() => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 800);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    camera.position.set(0, 20, 50);
+
+    const loader = new GLTFLoader();
+    loader.load('/3d/untitlednew.glb', function (gltf) {
+      const model = gltf.scene;
+      model.scale.set(10, 10, 10);
+      modelRef.current = model;
+      glbRef.current = gltf;
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 2); // Luz ambiental
+      scene.add(ambientLight);
+      scene.add(model);
+    }, undefined, function (error) {
+      console.error(error);
+    });
+
+
+    const planeGeometry = new THREE.PlaneGeometry(500, 500);
+    const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x808080 });
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.rotation.x = - Math.PI / 2;
+    scene.add(plane);
+
+    function animate() {
+      const delta = clock.current.getDelta();
+      mixersRef.current.forEach(mixer => mixer.update(delta)); // Actualiza todos los mixers
+      renderer.render(scene, camera);
+    }
+
+    renderer.setAnimationLoop(animate); // Inicia el loop de animación
+
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
+  }, []);
+
+  const move3d = () => {
+    if (modelRef.current && glbRef.current) {
+      modelRef.current.rotation.x += 0.07;
+
+      // Crea un nuevo mixer y reproduce las animaciones
+      const mixer = new THREE.AnimationMixer(modelRef.current);
+      /* console.log(mixer)
+      console.log(glbRef.current.animations)
+      console.log(mixersRef) */
+      glbRef.current.animations.forEach((clip) => {
+        mixer.clipAction(clip).play();
+      });
+
+      // Agrega el mixer al array de mixersRef
+      mixersRef.current.push(mixer);
+ 
+     /*  if (modelRef.current) { */
+        modelRef.current.traverse((child) => {
+           console.log(child) 
+     /*  console.log(child.isMesh)
+      console.log(child.name) */
+         if (child.isMesh && child.name == 'SkinnedMesh') { // Cambia 'Shirt' por el nombre real del objeto
+            modelRef.current.remove(child);
+            console.log('holaaaa')
+          }  
+        });
+    /*   } */
+      // Aplica la textura si es necesario
+  /*    var tex = new THREE.TextureLoader().load('/texture/Eggette_DIFF (2).png');
+      tex.flipY = false;
+      modelRef.current.traverse(function (node) {
+        if (node.isMesh) {
+          node.material.map = tex;
+        }
+      });  */
+    }
+  }
+  const changetexture = ()=> {
+    var tex = new THREE.TextureLoader().load('/texture/Eggette_DIFF (2).png');
+      tex.flipY = false;
+      modelRef.current.traverse(function (node) {
+        if (node.isMesh) {
+          node.material.map = tex;
+        }
+      });
+  }
+  
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <main className=" w-[20%] absolute flex min-h-screen m-4  flex-col items-center justify-between">
+    
+      <button className=" text-black bg-white m-10 p-4 rounded-lg" onClick={move3d}>
+        holaaa
+      </button>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={changetexture}>
+        cambiar textura
+      </button>
     </main>
   );
 }
