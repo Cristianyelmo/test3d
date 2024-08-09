@@ -22,7 +22,7 @@ export default function Home() {
 
     const loader = new GLTFLoader();
     loader.load(
-      '/3d/untitlednew.glb',
+      '/3d/gato2.glb',
       function (gltf) {
         const model = gltf.scene;
         model.scale.set(10, 10, 10);
