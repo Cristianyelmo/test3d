@@ -1,13 +1,15 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 
 export default function Home() {
   const modelRef = useRef(null);
-  const mixersRef = useRef([]); // Mantén esto como un array
+  const mixersRef = useRef([]);
   const glbRef = useRef(null);
-  const clock = useRef(new THREE.Clock()); // Mueve el reloj fuera del useEffect
+  const clock = useRef(new THREE.Clock());
+  const [loading, setLoading] = useState(true);
+  const [loadProgress, setLoadProgress] = useState(0);
 
   useEffect(() => {
     const scene = new THREE.Scene();
@@ -19,19 +21,31 @@ export default function Home() {
     camera.position.set(0, 20, 50);
 
     const loader = new GLTFLoader();
-    loader.load('/3d/untitlednew.glb', function (gltf) {
-      const model = gltf.scene;
-      model.scale.set(10, 10, 10);
-      modelRef.current = model;
-      glbRef.current = gltf;
+    loader.load(
+      '/3d/untitlednew.glb',
+      function (gltf) {
+        const model = gltf.scene;
+        model.scale.set(10, 10, 10);
+        modelRef.current = model;
+        glbRef.current = gltf;
 
-      const ambientLight = new THREE.AmbientLight(0xffffff, 2); // Luz ambiental
-      scene.add(ambientLight);
-      scene.add(model);
-    }, undefined, function (error) {
-      console.error(error);
-    });
+        const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+        scene.add(ambientLight);
+        scene.add(model);
 
+        setLoading(false); // Modelo cargado, ocultar el preloader
+      },
+      function (xhr) {
+        // Actualiza el progreso de carga
+        if (xhr.lengthComputable) {
+          const percentComplete = (xhr.loaded / xhr.total) * 100;
+          setLoadProgress(Math.round(percentComplete));
+        }
+      },
+      function (error) {
+        console.error(error);
+      }
+    );
 
     const planeGeometry = new THREE.PlaneGeometry(500, 500);
     const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x808080 });
@@ -41,11 +55,11 @@ export default function Home() {
 
     function animate() {
       const delta = clock.current.getDelta();
-      mixersRef.current.forEach(mixer => mixer.update(delta)); // Actualiza todos los mixers
+      mixersRef.current.forEach(mixer => mixer.update(delta));
       renderer.render(scene, camera);
     }
 
-    renderer.setAnimationLoop(animate); // Inicia el loop de animación
+    renderer.setAnimationLoop(animate);
 
     return () => {
       document.body.removeChild(renderer.domElement);
@@ -56,59 +70,47 @@ export default function Home() {
     if (modelRef.current && glbRef.current) {
       modelRef.current.rotation.x += 0.07;
 
-      // Crea un nuevo mixer y reproduce las animaciones
       const mixer = new THREE.AnimationMixer(modelRef.current);
-      /* console.log(mixer)
-      console.log(glbRef.current.animations)
-      console.log(mixersRef) */
       glbRef.current.animations.forEach((clip) => {
         mixer.clipAction(clip).play();
       });
 
-      // Agrega el mixer al array de mixersRef
       mixersRef.current.push(mixer);
- 
-     /*  if (modelRef.current) { */
-        modelRef.current.traverse((child) => {
-           console.log(child) 
-     /*  console.log(child.isMesh)
-      console.log(child.name) */
-         if (child.isMesh && child.name == 'SkinnedMesh') { // Cambia 'Shirt' por el nombre real del objeto
-            modelRef.current.remove(child);
-            console.log('holaaaa')
-          }  
-        });
-    /*   } */
-      // Aplica la textura si es necesario
-  /*    var tex = new THREE.TextureLoader().load('/texture/Eggette_DIFF (2).png');
-      tex.flipY = false;
-      modelRef.current.traverse(function (node) {
-        if (node.isMesh) {
-          node.material.map = tex;
-        }
-      });  */
-    }
-  }
-  const changetexture = ()=> {
-    var tex = new THREE.TextureLoader().load('/texture/Eggette_DIFF (2).png');
-      tex.flipY = false;
-      modelRef.current.traverse(function (node) {
-        if (node.isMesh) {
-          node.material.map = tex;
+
+      modelRef.current.traverse((child) => {
+        if (child.isMesh && child.name === 'Shirt') {
+          modelRef.current.remove(child);
         }
       });
+    }
   }
-  
-  return (
-    <main className=" w-[20%] absolute flex min-h-screen m-4  flex-col items-center justify-between">
-    
-      <button className=" text-black bg-white m-10 p-4 rounded-lg" onClick={move3d}>
-        holaaa
-      </button>
 
-      <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={changetexture}>
-        cambiar textura
-      </button>
+  const changeTexture = () => {
+    const tex = new THREE.TextureLoader().load('/texture/Eggette_DIFF (2).png');
+    tex.flipY = false;
+    modelRef.current.traverse((node) => {
+      if (node.isMesh) {
+        node.material.map = tex;
+      }
+    });
+  }
+
+  return (
+    <main className="absolute flex min-h-screen w-full items-center justify-center">
+      {loading ? (
+        <div className="loader">
+          Cargando... {loadProgress}%
+        </div>
+      ) : (
+        <div className="controls">
+          <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={move3d}>
+            Rotar y animar
+          </button>
+          <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={changeTexture}>
+            Cambiar textura
+          </button>
+        </div>
+      )}
     </main>
   );
 }
