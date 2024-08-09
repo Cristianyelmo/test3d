@@ -33,14 +33,12 @@ export default function Home() {
         scene.add(ambientLight);
         scene.add(model);
 
-        setLoading(false); // Modelo cargado, ocultar el preloader
+        setLoading(false);
       },
       function (xhr) {
         // Actualiza el progreso de carga
-        if (xhr.lengthComputable) {
-          const percentComplete = (xhr.loaded / xhr.total) * 100;
-          setLoadProgress(Math.round(percentComplete));
-        }
+        const percentComplete = (xhr.loaded / xhr.total) * 100;
+        setLoadProgress(Math.round(percentComplete));
       },
       function (error) {
         console.error(error);
@@ -96,13 +94,12 @@ export default function Home() {
   }
 
   return (
-    <main className="absolute flex min-h-screen w-full items-center justify-center">
-      {loading ? (
-        <div className="loader">
-          Cargando... {loadProgress}%
-        </div>
-      ) : (
-        <div className="controls">
+    <main className={`h-full w-full bg-white ${loading && 'absolute'} `}>
+  
+ {  loading ?   ( <div className="loader h-full w-full z-50 absolute ">
+          Cargando... 
+        </div>): (
+        <div className="controls absolute">
           <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={move3d}>
             Rotar y animar
           </button>
@@ -111,6 +108,7 @@ export default function Home() {
           </button>
         </div>
       )}
+    
     </main>
   );
 }
