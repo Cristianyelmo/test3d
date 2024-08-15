@@ -247,7 +247,7 @@ export default function Home() {
             Cambiar textura
       
           </button>
-          <select value={selectedValue} onClick={()=>changeTexture('anteojoos.png','Cube001')}>
+          <select value={selectedValue} onChange={(e) => changeTexture(e.target.value, 'Cube001')}>
         <option value="anteojoos.png"  onClick={()=>changeTexture('anteojoos2.png','Cube001')} >Option 1</option>
         <option value="anteojoos2.png" onClick={()=>changeTexture('anteojoos.png','Cube001')}>Option 2</option>
         <option value="anteojoos2.png" onClick={()=>changeTexture('nada','Cube001')}>Nada</option>
