@@ -243,7 +243,7 @@ export default function Home() {
           <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={move3d}>
             Rotar y animar
           </button>
-          <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={()=>changeTexture('anteojoos.png')}>
+          <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={()=>changeTexture('anteojoos.png','Cube001')}>
             Cambiar textura
       
           </button>
