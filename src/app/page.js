@@ -43,7 +43,7 @@ export default function Home() {
 
     const loader = new GLTFLoader();
     loader.load(
-      '/3d/dios2.glb',
+      '/3d/ss.glb',
       function (gltf) {
         const model = gltf.scene;
         model.scale.set(6.5, 6.5, 6.5);
@@ -52,7 +52,7 @@ export default function Home() {
 
 
         const textureLoader = new THREE.TextureLoader();
-textureLoader.load('/texture/nathan-anderson-9o-VrJSwGuw-unsplash.jpg', function(texture) {
+textureLoader.load('/texture/Untitled.jpeg', function(texture) {
   scene.background = texture;
 });
 
@@ -101,8 +101,14 @@ textureLoader.load('/texture/nathan-anderson-9o-VrJSwGuw-unsplash.jpg', function
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = - Math.PI / 2;
     scene.add(plane); */
-
+    let moveCameraForward = true; 
     function animate() {
+
+      if (moveCameraForward && camera.position.z > 55) {
+        camera.position.z -= 0.1; // Ajusta la velocidad de la cámara
+      } else {
+        moveCameraForward = false; // Detén el movimiento de la cámara
+      }
       const delta = clock.current.getDelta();
       mixersRef.current.forEach(mixer => mixer.update(delta));
    /*    if (modelRef.current && glbRef.current) {
