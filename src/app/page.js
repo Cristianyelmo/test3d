@@ -200,15 +200,15 @@ export default function Home() {
           child.visible = true;
         }
 
-        const tex = new THREE.TextureLoader().load(`/texture/${hola}`);
-        console.log(tex)
-        tex.flipY = false;
-        modelRef.current.traverse((node) => {
-        
-                if (node.isMesh && node.name == cube) {
-            node.material.map = tex;
-          }
-        });
+         const tex = new THREE.TextureLoader().load(`/texture/${hola}`);
+    console.log(tex)
+    tex.flipY = false;
+    modelRef.current.traverse((node) => {
+    
+            if (node.isMesh && node.name == cube) {
+        node.material.map = tex;
+      }
+    });
       });  
     }
  
@@ -247,10 +247,10 @@ export default function Home() {
             Cambiar textura
       
           </button>
-          <select >
-        <option   onClick={()=>changeTexture('anteojoos2.png','Cube001')} >Option 1</option>
-        <option  onClick={()=>changeTexture('anteojoos.png','Cube001')}>Option 2</option>
-        <option  onClick={()=>changeTexture('nada','Cube001')}>Nada</option>
+          <select value={selectedValue} onClick={()=>changeTexture('anteojoos.png','Cube001')}>
+        <option value="anteojoos.png"  onClick={()=>changeTexture('anteojoos2.png','Cube001')} >Option 1</option>
+        <option value="anteojoos2.png" onClick={()=>changeTexture('anteojoos.png','Cube001')}>Option 2</option>
+        <option value="anteojoos2.png" onClick={()=>changeTexture('nada','Cube001')}>Nada</option>
       
       </select>
         </div>
