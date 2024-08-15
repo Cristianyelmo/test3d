@@ -50,13 +50,13 @@ export default function Home() {
         modelRef.current = model;
         glbRef.current = gltf;
 
-        /*  modelRef.current.traverse((child) => {
+        modelRef.current.traverse((child) => {
           if (child.isMesh  && child.name === 'Cube001' ) {
          
             console.log(child.name)
             child.visible = false;
           }
-        });  */
+        });  
 
 
          modelRef.current.traverse((child) => {
