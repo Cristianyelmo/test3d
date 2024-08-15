@@ -248,9 +248,9 @@ export default function Home() {
       
           </button>
           <select >
-        <option value="anteojoos.png"  onClick={()=>changeTexture('anteojoos2.png','Cube001')} >Option 1</option>
-        <option value="anteojoos2.png" onClick={()=>changeTexture('anteojoos.png','Cube001')}>Option 2</option>
-        <option value="anteojoos2.png" onClick={()=>changeTexture('nada','Cube001')}>Nada</option>
+        <option   onClick={()=>changeTexture('anteojoos2.png','Cube001')} >Option 1</option>
+        <option  onClick={()=>changeTexture('anteojoos.png','Cube001')}>Option 2</option>
+        <option  onClick={()=>changeTexture('nada','Cube001')}>Nada</option>
       
       </select>
         </div>
