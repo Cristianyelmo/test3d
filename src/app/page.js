@@ -214,7 +214,7 @@ export default function Home() {
  
    
   }
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState('nada');
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -247,12 +247,17 @@ export default function Home() {
             Cambiar textura
       
           </button>
-          <select value={selectedValue} onChange={(e) => changeTexture(e.target.value, 'Cube001')}>
-        <option value="anteojoos.png"  onClick={()=>changeTexture('anteojoos2.png','Cube001')} >Option 1</option>
-        <option value="anteojoos2.png" onClick={()=>changeTexture('anteojoos.png','Cube001')}>Option 2</option>
-        <option value="anteojoos2.png" onClick={()=>changeTexture('nada','Cube001')}>Nada</option>
-      
-      </select>
+          <select 
+    value={selectedValue} 
+    onChange={(e) => {
+      setSelectedValue(e.target.value); // Actualiza el valor seleccionado
+      changeTexture(e.target.value, 'Cube001'); // Cambia la textura basada en la selección
+    }}
+  >
+    <option value="anteojoos.png">Option 1</option>
+    <option value="anteojoos2.png">Option 2</option>
+    <option value="nada">Nada</option>
+  </select>
         </div>
 
       
