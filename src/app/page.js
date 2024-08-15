@@ -39,16 +39,22 @@ export default function Home() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    camera.position.set(0, 20, 50);
+    camera.position.set(0, 50, 70);
 
     const loader = new GLTFLoader();
     loader.load(
-      '/3d/gatoosfgfg.glb',
+      '/3d/dios2.glb',
       function (gltf) {
         const model = gltf.scene;
-        model.scale.set(6, 6, 6);
+        model.scale.set(6.5, 6.5, 6.5);
         modelRef.current = model;
         glbRef.current = gltf;
+
+
+        const textureLoader = new THREE.TextureLoader();
+textureLoader.load('/texture/nathan-anderson-9o-VrJSwGuw-unsplash.jpg', function(texture) {
+  scene.background = texture;
+});
 
         modelRef.current.traverse((child) => {
           if (child.isMesh  && child.name === 'Cube001' ) {
@@ -58,7 +64,7 @@ export default function Home() {
           }
         });  
 
-
+        modelRef.current.rotation.y =12.6;
          modelRef.current.traverse((child) => {
           if (child.isMesh && child.name == 'Cube001') {
        
@@ -72,7 +78,7 @@ export default function Home() {
         }); 
 
      
-        const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 6);
         scene.add(ambientLight);
         scene.add(model);
 
@@ -99,9 +105,9 @@ export default function Home() {
     function animate() {
       const delta = clock.current.getDelta();
       mixersRef.current.forEach(mixer => mixer.update(delta));
-      if (modelRef.current && glbRef.current) {
+   /*    if (modelRef.current && glbRef.current) {
         modelRef.current.rotation.y += 0.01;
-      }
+      } */
       renderer.render(scene, camera);
     }
 
