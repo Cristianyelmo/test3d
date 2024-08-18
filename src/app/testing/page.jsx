@@ -3,31 +3,20 @@ import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import Modelss from "../components/Modelss";
+import { MichiHook } from "../context/HomessContext";
+import Cats from "../components/view/Cats";
+import EditedCats from "../components/view/EditedCats";
+import CreateCats from "../components/view/CreateCats";
 
 export default function testing() {
-  const gatos =[
-{name:'cristian'},
-{name:'cristian2'},
-{name:'cristian3'},
-{name:'cristian'},
-{name:'cristian2'},
-{name:'cristian3'}
-]
+const {gatos,gatofind,changepage}= MichiHook()
 
    return (
     <main className={` bg-white h-screen `}>
-<div className="  mt-10 bg-white flex   ">
-    {
-        gatos.map((gato,index)=>(
-            <div key={index}>
-            <Modelss/>
-            <p>{gato.name}</p>
-          </div>
-        ))
-    }
-   
-
+<div className=" mt-10 bg-white flex space-x-10">
+{changepage == 'Cats' ? <Cats/> : changepage == 'EditedCats' ?  <EditedCats/> : changepage == 'CreateCats' && <CreateCats/>}
   </div>
+
     </main>
   ); 
 }

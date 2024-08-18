@@ -2,10 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
+import { MichiHook } from "../context/HomessContext";
 
-export default function Modelss() {
+export default function Modelss({texture}) {
+  const {modelRef2,glbRef2,mixersRef} = MichiHook() 
   const modelRef = useRef(null);
-  const mixersRef = useRef([]);
+ /*  const mixersRef = useRef([]); */
   const glbRef = useRef(null);
   const clock = useRef(new THREE.Clock());
   const [loading, setLoading] = useState(true);
@@ -22,6 +24,7 @@ export default function Modelss() {
     const height = container.clientHeight;
 
     renderer.setSize(width, height);
+   
     container.appendChild(renderer.domElement); // Agrega el canvas al contenedor
 
     camera.position.set(0, 20, 50);
@@ -33,22 +36,41 @@ export default function Modelss() {
         const model = gltf.scene;
         model.scale.set(10, 10, 10);
         modelRef.current = model;
+        modelRef2.current = model
         glbRef.current = gltf;
+        glbRef2.current = gltf;
 
-        modelRef.current.traverse((child) => {
-          if (child.isMesh && child.name === 'Cube001') {
-            console.log(child.name);
-            child.visible = false;
-          }
-        });
 
-        modelRef.current.traverse((child) => {
-          if (child.isMesh && child.name === 'Cube001') {
-            child.material.transparent = true;
-            child.material.opacity = 0.9;
-            child.material.alphaTest = 0.1;
-          }
-        });
+        
+{
+  texture.map((textureName) => {
+    const tex = new THREE.TextureLoader().load(`/texture/${textureName.name}`);
+    console.log(tex);
+    tex.flipY = false;
+  
+    modelRef.current.traverse((node) => {
+      if (node.isMesh && node.name == textureName.cube) {
+        if(textureName.cube == 'Cube001'){
+          node.material.transparent = true;
+        node.material.opacity = 0.9;
+        node.material.alphaTest = 0.1;
+        node.material.needsUpdate = true;
+        }
+
+        if(textureName.name == 'nada'){
+          node.visible = false;
+        }else{
+          node.material.map = tex;
+        }
+
+
+        
+        
+      }
+    });
+  });
+}
+       
 
         const ambientLight = new THREE.AmbientLight(0xffffff, 2);
         scene.add(ambientLight);
@@ -90,6 +112,9 @@ export default function Modelss() {
       mixersRef.current.push(mixer);
     }
   };
+
+
+ 
 
   return (
     <div className="border-[3px] border-[#00FF00] ">
