@@ -4,7 +4,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import { MichiHook } from "../context/HomessContext";
 
-export default function Modelss({texture}) {
+export default function Modelss({texture,editandcreate}) {
   const {modelRef2,glbRef2,mixersRef} = MichiHook() 
   const modelRef = useRef(null);
  /*  const mixersRef = useRef([]); */
@@ -13,8 +13,9 @@ export default function Modelss({texture}) {
   const [loading, setLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
   const containerRef = useRef(null); // Nuevo ref para el contenedor
-
+  
   useEffect(() => {
+   
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 800);
     const renderer = new THREE.WebGLRenderer();
@@ -26,7 +27,7 @@ export default function Modelss({texture}) {
     renderer.setSize(width, height);
    
     container.appendChild(renderer.domElement); // Agrega el canvas al contenedor
-
+ 
     camera.position.set(0, 20, 50);
 
     const loader = new GLTFLoader();
@@ -99,9 +100,10 @@ export default function Modelss({texture}) {
     renderer.setAnimationLoop(animate);
 
     return () => {
+      renderer.setAnimationLoop(null); // 
       container.removeChild(renderer.domElement);
     };
-  }, []);
+  }, [!editandcreate && texture]);
 
   const move3d = () => {
     if (modelRef.current && glbRef.current) {

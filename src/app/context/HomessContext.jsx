@@ -25,7 +25,7 @@ export const MichiProvider = ({ children }) => {
         {
           name: "remera3.png",
           cube: "Cube002",
-        },
+        }
       ],
     },
     {
@@ -44,7 +44,7 @@ export const MichiProvider = ({ children }) => {
         {
           name: "remera1.png",
           cube: "Cube002",
-        },
+        }
       ],
     },
     {

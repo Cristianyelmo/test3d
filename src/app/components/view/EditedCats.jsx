@@ -31,7 +31,7 @@ const move3d = () => {
     glbRef2.current.animations.forEach((clip) => {
       const action = mixer.clipAction(clip);
       action.play();
-      action.timeScale = 0.1; 
+     
     });
 
     mixersRef.current.push(mixer); 
@@ -119,7 +119,7 @@ setTimeout(() => {
       
      
             <div >
-            <Modelss texture={find.textura}/>
+            <Modelss texture={find.textura} editandcreate={true} />
             
         <input onChange={(e) => {
       setSelectedValuetext(e.target.value)
