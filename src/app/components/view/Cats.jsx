@@ -6,8 +6,10 @@ import Modelss from "../Modelss";
 import { MichiHook } from "../../context/HomessContext";
 
 export default function Cats() {
-const {gatos,gatofind,setChangepage,setGatos}= MichiHook()
+const {gatos,gatofind,setChangepage,setGatos,modelRef2,glbRef2,mixersRef,otherRef}= MichiHook()
 const [viewModal,setViewModal] = useState(false)
+const [viewview,setViewview] = useState(false)
+const [infoview,setInfoView] = useState(false)
 const [infoModal,setInfoModal] = useState(false)
 const[animationdelete,setAnimationdelete]=useState('')
 const[idanimation,setIdAnimation]=useState(null)
@@ -24,11 +26,22 @@ const gatoModal = (id)=>{
 
 }
 
+
+const gatoView = (id)=>{
+
+  setViewview(true)
+
+  const hola = gatos.find((obj) => obj.id == id);
+  setInfoView(hola)
+
+}
+
 const gatosDelete = (id)=>{
 setAnimationdelete('animation-delete') 
   setViewModal(false)
 
   setIdAnimation(id)
+ move3d(id)
   setTimeout(() => {
     const nuevosGatos = gatos.filter((gato) => gato.id !== id);
     setGatos(nuevosGatos);
@@ -45,6 +58,26 @@ setAnimationdelete('animation-delete')
 
 
 
+}
+
+
+
+const move3d = (index) => {
+
+  /* if (otherRef.current) {
+    // Selecciona el elemento con la clase dinámica
+    const element = otherRef.current.querySelector(`.test-${index}`);
+
+    if (element && modelRef2.current && glbRef2.current) {
+      const mixer = new THREE.AnimationMixer(modelRef2.current);
+      glbRef2.current.animations.forEach((clip) => {
+        const action = mixer.clipAction(clip);
+        action.play();
+      });
+
+      mixersRef.current.push(mixer); 
+    }
+  } */
 }
 
 const ITEMS_PER_PAGE = 3; 
@@ -72,12 +105,23 @@ const ITEMS_PER_PAGE = 3;
 
 
 
+ 
+
+
+
+
+
+
+
+
+
+
 
    return (
    
 <div className="flex">
 
-{viewModal && <div class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+{viewModal && <div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
      
         <div class="bg-white p-6 rounded-lg shadow-lg w-80">
             <h2 class="text-xl font-bold mb-4">quieres eliminar a {infoModal.name}</h2>
@@ -90,6 +134,22 @@ const ITEMS_PER_PAGE = 3;
 
 
     </div>}
+
+
+    {viewview && <div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
+     
+        <div class="bg-white p-6 rounded-lg shadow-lg w-80">
+          <button onClick={()=> setViewview(false)} >cerrar</button>
+        <Modelss texture={infoview.textura} editandcreate={false} orbitControls={true} />
+        </div>
+           
+
+
+
+
+    </div> }
+
+
     <div className="flex flex-col">
       <div className="flex">
     {
@@ -98,11 +158,12 @@ const ITEMS_PER_PAGE = 3;
             <div key={gato.id}  className={` ${idanimation == gato.id ? 'animation-delete' : 'animation-open'}`}
             
             >
-            <Modelss texture={gato.textura} editandcreate={false} />
+            <Modelss texture={gato.textura} editandcreate={false} index={gato.id} />
             <p>{gato.name}</p>
             <div className="space-x-2">
-            <button onClick={()=>gatofind(gato.id)} className="bg-black text-white">editar</button>
-            <button onClick={()=>gatoModal(gato.id)} className="bg-black text-white">eliminar</button>
+            <button onClick={()=>gatofind(gato.id)} className="bg-black text-white p-2">editar</button>
+            <button onClick={()=>gatoModal(gato.id)} className="bg-black text-white p-2">eliminar</button>
+            <button onClick={()=>gatoView(gato.id)} className="bg-black text-white p-2">ver</button>
             </div>
           </div>
            

@@ -3,17 +3,21 @@ import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import { MichiHook } from "../context/HomessContext";
-
-export default function Modelss({texture,editandcreate}) {
-  const {modelRef2,glbRef2,mixersRef} = MichiHook() 
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+export default function Modelss({texture,editandcreate,index,orbitControls}) {
+  const {modelRef2,glbRef2,mixersRef,otherRef} = MichiHook() 
   const modelRef = useRef(null);
  /*  const mixersRef = useRef([]); */
   const glbRef = useRef(null);
   const clock = useRef(new THREE.Clock());
   const [loading, setLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
-  const containerRef = useRef(null); // Nuevo ref para el contenedor
-  
+const containerRef = useRef(null); 
+
+const arrayRef = useRef([]);
+
+
+
   useEffect(() => {
    
     const scene = new THREE.Scene();
@@ -41,12 +45,12 @@ export default function Modelss({texture,editandcreate}) {
         glbRef.current = gltf;
         glbRef2.current = gltf;
 
-
-        
+        arrayRef.current.push(model);
+        console.log(arrayRef.current)
 {
   texture.map((textureName) => {
     const tex = new THREE.TextureLoader().load(`/texture/${textureName.name}`);
-    console.log(tex);
+   
     tex.flipY = false;
   
     modelRef.current.traverse((node) => {
@@ -71,8 +75,12 @@ export default function Modelss({texture,editandcreate}) {
     });
   });
 }
-       
-
+if(orbitControls == true){
+  camera.position.set(60, 20, 20);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.90;
+}
         const ambientLight = new THREE.AmbientLight(0xffffff, 2);
         scene.add(ambientLight);
         scene.add(model);
@@ -105,24 +113,16 @@ export default function Modelss({texture,editandcreate}) {
     };
   }, [!editandcreate && texture]);
 
-  const move3d = () => {
-    if (modelRef.current && glbRef.current) {
-      const mixer = new THREE.AnimationMixer(modelRef.current);
-      glbRef.current.animations.forEach((clip) => {
-        mixer.clipAction(clip).play();
-      });
-      mixersRef.current.push(mixer);
-    }
-  };
+  
 
 
- 
+
 
   return (
-    <div className="border-[3px] border-[#00FF00] ">
-      <div ref={containerRef} className="w-[200px] h-[200px] "> {/* Contenedor para el canvas */}
+    <div className={`border-[3px] border-[#00FF00]  `}>
+      <div  ref={containerRef} className={`w-[200px] h-[200px] test-${index} `}> 
 
-        {/* Aquí se montará el canvas de Three.js */}
+      
       </div>
       </div>
     

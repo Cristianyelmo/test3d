@@ -2,13 +2,13 @@
 import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
-import Modelss from "../components/Modelss";
+import Modelss from "./Modelss";
 import { MichiHook } from "../context/HomessContext";
-import Cats from "../components/view/Cats";
-import EditedCats from "../components/view/EditedCats";
-import CreateCats from "../components/view/CreateCats";
+import Cats from "./view/Cats";
+import EditedCats from "./view/EditedCats";
+import CreateCats from "./view/CreateCats";
 
-export default function crud() {
+export default function Crud() {
 const {gatos,gatofind,changepage}= MichiHook()
 const[presentacioncrud,setPresentacioncrud]=useState('')
 useEffect(()=>{
@@ -21,7 +21,7 @@ useEffect(()=>{
    return (
     <div>
     <div className={`bg-black absolute z-30 inset-0 opacity-presentation2 ${presentacioncrud}`}></div>
-    <main className={` bg-white h-screen `}>
+    <main className={` bg-white `}>
 <div className=" mt-10 bg-white flex space-x-10">
 {changepage == 'Cats' ? <Cats/> : changepage == 'EditedCats' ?  <EditedCats/> : changepage == 'CreateCats' && <CreateCats/>}
   </div>

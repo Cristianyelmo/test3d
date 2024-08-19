@@ -2,8 +2,10 @@
 import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
-
-export default function Homexdxd() {
+import { useRouter } from 'next/navigation';
+import { MichiHook } from "../context/HomessContext";
+export default function Presentation() {
+   const {changePagePresentation,setChangePagePresentation} =  MichiHook()
   const modelRef = useRef(null);
   const mixersRef = useRef([]);
   const glbRef = useRef(null);
@@ -31,7 +33,20 @@ export default function Homexdxd() {
       });
     }
   }, [animation]); */
+  const [presentationanimation,setPresentationanimation]= useState('')
+
   
+  useEffect(()=>{
+setTimeout(() => {
+  setPresentationanimation('opacity-presentation')
+}, 5000);
+
+setTimeout(() => {
+    setChangePagePresentation(false)
+}, 8000);
+  },[])
+
+
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 800);
@@ -39,16 +54,22 @@ export default function Homexdxd() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    camera.position.set(0, 20, 50);
+    camera.position.set(0, 50, 70);
 
     const loader = new GLTFLoader();
     loader.load(
-      '/3d/gatoosfgfg.glb',
+      '/3d/ss.glb',
       function (gltf) {
         const model = gltf.scene;
-        model.scale.set(6, 6, 6);
+        model.scale.set(6.5, 6.5, 6.5);
         modelRef.current = model;
         glbRef.current = gltf;
+
+
+        const textureLoader = new THREE.TextureLoader();
+textureLoader.load('/texture/Untitled.jpeg', function(texture) {
+  scene.background = texture;
+});
 
         modelRef.current.traverse((child) => {
           if (child.isMesh  && child.name === 'Cube001' ) {
@@ -58,7 +79,7 @@ export default function Homexdxd() {
           }
         });  
 
-
+        modelRef.current.rotation.y =12.6;
          modelRef.current.traverse((child) => {
           if (child.isMesh && child.name == 'Cube001') {
        
@@ -72,7 +93,7 @@ export default function Homexdxd() {
         }); 
 
      
-        const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 6);
         scene.add(ambientLight);
         scene.add(model);
 
@@ -95,13 +116,19 @@ export default function Homexdxd() {
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = - Math.PI / 2;
     scene.add(plane); */
-
+    let moveCameraForward = true; 
     function animate() {
+
+      if (moveCameraForward && camera.position.z > 55) {
+        camera.position.z -= 0.1; // Ajusta la velocidad de la cámara
+      } else {
+        moveCameraForward = false; // Detén el movimiento de la cámara
+      }
       const delta = clock.current.getDelta();
       mixersRef.current.forEach(mixer => mixer.update(delta));
-      if (modelRef.current && glbRef.current) {
+   /*    if (modelRef.current && glbRef.current) {
         modelRef.current.rotation.y += 0.01;
-      }
+      } */
       renderer.render(scene, camera);
     }
 
@@ -111,6 +138,11 @@ export default function Homexdxd() {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
+
+
+
+
+
 
   const move3d = () => {
     if (modelRef.current && glbRef.current) {
@@ -218,12 +250,10 @@ export default function Homexdxd() {
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
-    /* console.log(event.target.value); */
-  
-    // Carga la textura seleccionada
+   
     const tex2 = new THREE.TextureLoader().load(`/texture/${event.target.value}`);
     console.log(`/texture/${event.target.value}`)
-    // Aplica la textura al modelo
+    
     modelRef.current.traverse((node) => {
       if (node.isMesh && node.name == 'Cube001') {
        
@@ -233,36 +263,21 @@ export default function Homexdxd() {
       }
     });
   };
- /*  return (
-    <main className={`h-full w-full bg-white ${loading && 'absolute'} `}>
+  return (
+
+<div className={`bg-black h-full w-full absolute opacity-0 ${presentationanimation}`}></div>
+   /*  <main className={`h-full w-full bg-white ${loading && 'absolute'} `}>
   
  {  loading ?   ( <div className="loader h-full w-full z-50 absolute ">
           Cargando... 
         </div>): (
         <div className="controls absolute">
-          <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={move3d}>
-            Rotar y animar
-          </button>
-          <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={()=>changeTexture('anteojoos.png','Cube001')}>
-            Cambiar textura
-      
-          </button>
-          <select 
-    value={selectedValue} 
-    onChange={(e) => {
-      setSelectedValue(e.target.value); // Actualiza el valor seleccionado
-      changeTexture(e.target.value, 'Cube001'); // Cambia la textura basada en la selección
-    }}
-  >
-    <option value="anteojoos.png">Option 1</option>
-    <option value="anteojoos2.png">Option 2</option>
-    <option value="nada">Nada</option>
-  </select>
+          
         </div>
 
       
       )}
     
-    </main>
-  ); */
+    </main> */
+  );
 }

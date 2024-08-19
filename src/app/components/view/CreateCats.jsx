@@ -45,7 +45,7 @@ const move3d = () => {
 const CreatedArray = () => {
 
   const newObject =  {
-    id: 5,
+    id: 9,
     name:selectedValuetext,
     textura: selectedValue
   }

@@ -26,7 +26,7 @@ export const MichiProvider = ({ children }) => {
           name: "remera3.png",
           cube: "Cube002",
         }
-      ],
+      ]
     },
     {
       id: 2,
@@ -45,7 +45,7 @@ export const MichiProvider = ({ children }) => {
           name: "remera1.png",
           cube: "Cube002",
         }
-      ],
+      ]
     },
     {
       id: 3,
@@ -64,6 +64,7 @@ export const MichiProvider = ({ children }) => {
           cube: "Cube002",
         },
       ],
+    
     },
     {
       id: 4,
@@ -83,6 +84,83 @@ export const MichiProvider = ({ children }) => {
           cube: "Cube002",
         },
       ],
+    
+    },
+    {
+      id: 5,
+      name: "cristian",
+      textura: [
+        {
+          name: "piel1.png",
+          cube: "Cube",
+        },
+        {
+          name: "nada",
+          cube: "Cube001",
+        },
+        {
+          name: "remera3.png",
+          cube: "Cube002",
+        }
+      ]
+    },
+    {
+      id: 6,
+      name: "cristian2",
+      textura: [
+        {
+          name: "piel2.png",
+          cube: "Cube",
+        },
+        {
+          name: "anteojoos2.png",
+          cube: "Cube001",
+        },
+        
+        {
+          name: "remera1.png",
+          cube: "Cube002",
+        }
+      ]
+    },
+    {
+      id: 7,
+      name: "cristian3",
+      textura: [
+        {
+          name: "piel2.png",
+          cube: "Cube",
+        },
+        {
+          name: "nada",
+          cube: "Cube001",
+        },
+        {
+          name: "remera2.png",
+          cube: "Cube002",
+        },
+      ],
+    
+    },
+    {
+      id: 8,
+      name: "cristian",
+      textura: [
+        {
+          name: "piel3.png",
+          cube: "Cube",
+        },
+        {
+          name: "anteojoos2.png",
+          cube: "Cube001",
+        },
+
+        {
+          name: "remera1.png",
+          cube: "Cube002",
+        },
+      ],
+    
     },
   ])
 
@@ -130,7 +208,8 @@ export const MichiProvider = ({ children }) => {
               }); */
     }
   };
-
+  const [changePagePresentation,setChangePagePresentation]= useState(true)
+  const otherRef = useRef(null);
   return (
     <MichiContext.Provider
       value={{
@@ -143,7 +222,9 @@ export const MichiProvider = ({ children }) => {
         modelRef2,
         glbRef2,
         changeTexture,
-        setGatos
+        setGatos,
+        changePagePresentation,setChangePagePresentation,
+        otherRef
       }}
     >
       {children}
