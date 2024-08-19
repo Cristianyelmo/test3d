@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
-
+import { useRouter } from 'next/navigation';
 export default function Home() {
   const modelRef = useRef(null);
   const mixersRef = useRef([]);
@@ -31,7 +31,20 @@ export default function Home() {
       });
     }
   }, [animation]); */
+  const [presentationanimation,setPresentationanimation]= useState('')
+  const router = useRouter();
   
+  useEffect(()=>{
+setTimeout(() => {
+  setPresentationanimation('opacity-presentation')
+}, 5000);
+
+setTimeout(() => {
+  router.push('/crud');
+}, 8000);
+  },[])
+
+
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 800);
@@ -123,6 +136,11 @@ textureLoader.load('/texture/Untitled.jpeg', function(texture) {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
+
+
+
+
+
 
   const move3d = () => {
     if (modelRef.current && glbRef.current) {
@@ -246,35 +264,20 @@ textureLoader.load('/texture/Untitled.jpeg', function(texture) {
     });
   };
   return (
-    <main className={`h-full w-full bg-white ${loading && 'absolute'} `}>
+
+<div className={`bg-black h-full w-full absolute opacity-0 ${presentationanimation}`}></div>
+   /*  <main className={`h-full w-full bg-white ${loading && 'absolute'} `}>
   
  {  loading ?   ( <div className="loader h-full w-full z-50 absolute ">
           Cargando... 
         </div>): (
         <div className="controls absolute">
-          <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={move3d}>
-            Rotar y animar
-          </button>
-          <button className="text-black bg-white m-10 p-4 rounded-lg" onClick={()=>changeTexture('anteojoos.png','Cube001')}>
-            Cambiar textura
-      
-          </button>
-          <select 
-    value={selectedValue} 
-    onChange={(e) => {
-      setSelectedValue(e.target.value); // Actualiza el valor seleccionado
-      changeTexture(e.target.value, 'Cube001'); // Cambia la textura basada en la selección
-    }}
-  >
-    <option value="anteojoos.png">Option 1</option>
-    <option value="anteojoos2.png">Option 2</option>
-    <option value="nada">Nada</option>
-  </select>
+          
         </div>
 
       
       )}
     
-    </main>
+    </main> */
   );
 }

@@ -9,6 +9,12 @@ export default function Cats() {
 const {gatos,gatofind,setChangepage,setGatos}= MichiHook()
 const [viewModal,setViewModal] = useState(false)
 const [infoModal,setInfoModal] = useState(false)
+const[animationdelete,setAnimationdelete]=useState('')
+const[idanimation,setIdAnimation]=useState(null)
+
+
+
+
 const gatoModal = (id)=>{
 
   setViewModal(true)
@@ -19,17 +25,29 @@ const gatoModal = (id)=>{
 }
 
 const gatosDelete = (id)=>{
-
-  
-
-  const hola = gatos.filter((obj) => obj.id !== id);
-  setGatos(hola)
+setAnimationdelete('animation-delete') 
   setViewModal(false)
 
-  console.log(hola)
+  setIdAnimation(id)
+  setTimeout(() => {
+    const nuevosGatos = gatos.filter((gato) => gato.id !== id);
+    setGatos(nuevosGatos);
+
+   
+    const newTotalPages = Math.ceil(nuevosGatos.length / ITEMS_PER_PAGE);
+    if (currentPage > newTotalPages) {
+      setCurrentPage(newTotalPages);
+    }
+  }, 1500);
+
+
+
+
+
+
 }
 
-const ITEMS_PER_PAGE = 3; // Número de elementos por página
+const ITEMS_PER_PAGE = 3; 
 
 
 
@@ -37,13 +55,14 @@ const ITEMS_PER_PAGE = 3; // Número de elementos por página
 
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentGatos = gatos.slice(startIndex, endIndex);
-
+  
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    console.log(currentGatos)
+   
   };
 
 
@@ -76,8 +95,10 @@ const ITEMS_PER_PAGE = 3; // Número de elementos por página
     {
         currentGatos.map((gato,index)=>(
      
-            <div key={index} >
-            <Modelss texture={gato.textura} editandcreate={false}/>
+            <div key={gato.id}  className={` ${idanimation == gato.id ? 'animation-delete' : 'animation-open'}`}
+            
+            >
+            <Modelss texture={gato.textura} editandcreate={false} />
             <p>{gato.name}</p>
             <div className="space-x-2">
             <button onClick={()=>gatofind(gato.id)} className="bg-black text-white">editar</button>

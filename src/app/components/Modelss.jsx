@@ -26,7 +26,7 @@ export default function Modelss({texture,editandcreate}) {
 
     renderer.setSize(width, height);
    
-    container.appendChild(renderer.domElement); // Agrega el canvas al contenedor
+    container.appendChild(renderer.domElement); 
  
     camera.position.set(0, 20, 50);
 

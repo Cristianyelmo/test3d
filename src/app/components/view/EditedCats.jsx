@@ -91,7 +91,7 @@ setTimeout(() => {
       setSelectedValue(prevState => ({
         ...prevState, 
         anteojos: e.target.value
-      })) // Actualiza el valor seleccionado
+      })) 
       changeTexture(e.target.value,'Cube001'); 
     }}
   >

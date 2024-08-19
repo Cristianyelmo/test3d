@@ -112,7 +112,7 @@ const handleUpdate = (e,cubex) => {
      
             <div >
             <Modelss texture={selectedValue} editandcreate={true}/>
-            <p>{find.name}</p>
+           
             <input onChange={(e) => {
       setSelectedValuetext(e.target.value)
     }} type="text" value={selectedValuetext} />
