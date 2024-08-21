@@ -3,10 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import { useRouter } from 'next/navigation';
-import Presentation from "./components/presentation";
+
 
 import { MichiHook } from "./context/HomessContext";
 import Crud from "./components/Crud";
+import Presentation from "./components/Presentation";
 export default function Home() {
  
   const { changePagePresentation } = MichiHook()
