@@ -94,7 +94,7 @@ export default function Cats() {
   };
 
   const move3d = (index) => {
-    /* if (otherRef.current) {
+    /* if (otherRef.current) xd{
     // Selecciona el elemento con la clase dinámica
     const element = otherRef.current.querySelector(`.test-${index}`);
 
