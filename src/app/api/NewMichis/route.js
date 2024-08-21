@@ -3,7 +3,7 @@
 import { db } from '../../lib/config/firebase';  // Ajusta la ruta según tu estructura de carpetas
 import { collection, addDoc } from 'firebase/firestore';
 import { NextResponse } from 'next/server';
-
+export const dynamic = 'force-dynamic';
 export async function POST(request) {
   try {
     const newObject = await request.json(); 

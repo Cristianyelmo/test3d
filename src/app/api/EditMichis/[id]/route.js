@@ -1,7 +1,7 @@
 import { db } from "../../../lib/config/firebase";
 import {doc, updateDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
-
+export const dynamic = 'force-dynamic';
 export async function PUT(request, { params }) {
   try {
     const newObject = await request.json(); 
