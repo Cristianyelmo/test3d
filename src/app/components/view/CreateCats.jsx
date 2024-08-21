@@ -45,16 +45,46 @@ const move3d = () => {
 const CreatedArray = () => {
 
   const newObject =  {
-    id: 9,
+    
     name:selectedValuetext,
     textura: selectedValue
   }
-  setGatos(prevItems => [...prevItems,newObject]);
+ 
+console.log(newObject)
+  const crearUsuario = async () => {
+    try {
+      const response = await fetch('/api/NewMichis', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newObject),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en la solicitud');
+      }
+
+      /* const data = await response.json();
+      setResponseMessage(data.message || 'Usuario creado exitosamente'); */
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Error al crear el usuario');
+    }
+  };
+
+  
+  crearUsuario(); 
+
+
+
+
+
   move3d()
 
 setTimeout(() => {
   setChangepage('Cats')
-}, 3000);
+}, 3000); 
   }
  
 

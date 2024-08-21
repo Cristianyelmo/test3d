@@ -2,6 +2,7 @@
 "use client";
 import { createContext, useContext, useState, useRef } from "react";
 import * as THREE from "three";
+import EditedCats from "../components/view/CreateCats";
 export const MichiContext = createContext(null);
 
 export const MichiHook = () => {
@@ -164,15 +165,16 @@ export const MichiProvider = ({ children }) => {
     },
   ])
 
-  const [find, setFind] = useState({});
+  const [find,setFind] = useState({});
   const [changepage, setChangepage] = useState("Cats");
-
-  const gatofind = (gatoxd) => {
-    const hola = gatos.find((obj) => obj.id == gatoxd);
-    console.log(hola);
-    setFind(hola);
-    setChangepage("EditedCats");
+  const [loadingedited,setLoadingEdited] = useState(false)
+  const [getid,setGetid] = useState(false)
+  const gatofind = (id) => {
+    setGetid(id)
+    setChangepage("EditedCats"); 
   };
+
+ 
   const modelRef2 = useRef(null);
   const glbRef2 = useRef(null);
   const mixersRef = useRef([]);
@@ -217,6 +219,7 @@ export const MichiProvider = ({ children }) => {
         gatos,
         gatofind,
         find,
+        setFind,
         changepage,
         setChangepage,
         modelRef2,
@@ -224,7 +227,10 @@ export const MichiProvider = ({ children }) => {
         changeTexture,
         setGatos,
         changePagePresentation,setChangePagePresentation,
-        otherRef
+        otherRef,
+        loadingedited,
+        setLoadingEdited,
+        getid
       }}
     >
       {children}
