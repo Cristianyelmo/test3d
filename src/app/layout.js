@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { MichiProvider } from "./context/HomessContext";
+import { MichiProvider } from "./context/MichiContext";
+import { MichiCreateAndEditedProvider } from "./context/MichiCreateAndEditedContext";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,10 +14,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <MichiProvider>
+    <MichiCreateAndEditedProvider>
+   
+
+   
     <html lang="en">
       <body className={inter.className}>{children}</body>
 
     </html>
+   
+    </MichiCreateAndEditedProvider>
     </MichiProvider>
   );
 }

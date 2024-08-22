@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import { useRouter } from 'next/navigation';
-import { MichiHook } from "../context/HomessContext";
+import { MichiHook } from "../context/MichiContext";
 export default function Presentation() {
    const {changePagePresentation,setChangePagePresentation} =  MichiHook()
   const modelRef = useRef(null);
@@ -71,26 +71,7 @@ textureLoader.load('/texture/Untitled.jpeg', function(texture) {
   scene.background = texture;
 });
 
-        modelRef.current.traverse((child) => {
-          if (child.isMesh  && child.name === 'Cube001' ) {
-         
-            console.log(child.name)
-            child.visible = false;
-          }
-        });  
-
-        modelRef.current.rotation.y =12.6;
-         modelRef.current.traverse((child) => {
-          if (child.isMesh && child.name == 'Cube001') {
-       
-             child.material.transparent = true; 
-            child.material.opacity = 0.9; 
-            child.material.alphaTest = 0.1; 
-    
-           
-          
-          }
-        }); 
+      
 
      
         const ambientLight = new THREE.AmbientLight(0xffffff, 6);
@@ -111,11 +92,7 @@ textureLoader.load('/texture/Untitled.jpeg', function(texture) {
 
    
 
-   /*  const planeGeometry = new THREE.PlaneGeometry(500, 500);
-    const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x808080 });
-    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.rotation.x = - Math.PI / 2;
-    scene.add(plane); */
+   
     let moveCameraForward = true; 
     function animate() {
 
@@ -144,125 +121,8 @@ textureLoader.load('/texture/Untitled.jpeg', function(texture) {
 
 
 
-  const move3d = () => {
-    if (modelRef.current && glbRef.current) {
-     /*  modelRef.current.rotation.x += 0.07; */
-
-      const mixer = new THREE.AnimationMixer(modelRef.current);
-      glbRef.current.animations.forEach((clip) => {
-        mixer.clipAction(clip).play();
-      });
-
-      mixersRef.current.push(mixer); 
-
-
-      /* modelRef.current.traverse((child) => {
-        if (child.isMesh  && child.name === 'Cube001' ) {
-       
-          console.log(child.name)
-          child.visible = true;
-        }
-      }); */
-
-     /*  modelRef.current.traverse((child) => {
-        if (child.isMesh && child.name === 'Shirt') {
-          modelRef.current.remove(child);
-        }
-      }); */
-    }
-
-
-/* 
-     modelRef.current.traverse((child) => {
-      if (child.isMesh) {
-        // Set transparency settings
-        child.material.transparent = true; // Enable transparency
-        child.material.opacity = 0.5; // Set desired opacity
-        child.material.alphaTest = 0.1; // Optional: adjust if needed
-
-        // Remove specific mesh if needed
-        if (child.name === 'Shirt') {
-          modelRef.current.remove(child);
-        }
-      }
-    }); */
-
-
-   
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-  }
-
-  const changeTexture = (hola,cube) => {
-
-
-    if(hola == 'nada'){
-      modelRef.current.traverse((child) => {
-        if (child.isMesh  && child.name == cube ) {
-       
-          console.log(child.name)
-          child.visible = false;
-        }
-      }); 
-    }else{
-      modelRef.current.traverse((child) => {
-        if (child.isMesh  && child.name == cube ) {
-       
-          console.log(child.name)
-          child.visible = true;
-        }
-
-         const tex = new THREE.TextureLoader().load(`/texture/${hola}`);
-    console.log(tex)
-    tex.flipY = false;
-    modelRef.current.traverse((node) => {
-    
-            if (node.isMesh && node.name == cube) {
-        node.material.map = tex;
-      }
-    });
-      });  
-    }
  
-   
-  }
-  const [selectedValue, setSelectedValue] = useState('nada');
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-   
-    const tex2 = new THREE.TextureLoader().load(`/texture/${event.target.value}`);
-    console.log(`/texture/${event.target.value}`)
-    
-    modelRef.current.traverse((node) => {
-      if (node.isMesh && node.name == 'Cube001') {
-       
-   
-        node.material.map = tex2;
-        node.material.needsUpdate = true; // Asegura que el material se actualice
-      }
-    });
-  };
   return (
 
 <div className={`bg-black h-full w-full absolute opacity-0 ${presentationanimation}`}></div>

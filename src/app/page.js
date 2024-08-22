@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { useRouter } from 'next/navigation';
 
 
-import { MichiHook } from "./context/HomessContext";
+import { MichiHook } from "./context/MichiContext";
 import Crud from "./components/Crud";
 import Presentation from "./components/Presentation";
 export default function Home() {

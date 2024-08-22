@@ -3,13 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import Modelss from "./Modelss";
-import { MichiHook } from "../context/HomessContext";
+import { MichiHook } from "../context/MichiContext";
 import Cats from "./view/Cats";
 import EditedCats from "./view/EditedCats";
 import CreateCats from "./view/CreateCats";
 
 export default function Crud() {
-const {gatos,gatofind,changepage}= MichiHook()
+const {changepage}= MichiHook()
 const[presentacioncrud,setPresentacioncrud]=useState('')
 useEffect(()=>{
   

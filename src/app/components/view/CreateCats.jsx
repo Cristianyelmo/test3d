@@ -1,160 +1,83 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import * as THREE from 'three';
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import * as THREE from "three";
 import Modelss from "../Modelss";
-import { MichiHook } from "../../context/HomessContext";
+import { MichiHook } from "../../context/MichiContext";
+import { NewMichi } from "@/app/services/Crud.service";
+import { MichiCreateAndEditedHook } from "@/app/context/MichiCreateAndEditedContext";
 
-export default function EditedCats() {
-const {find,changeTexture,setChangepage,gatos,setGatos,mixersRef,modelRef2,glbRef2}= MichiHook()
-const [selectedValuetext,setSelectedValuetext]= useState('')
-const [selectedValue, setSelectedValue] = useState([
+export default function CreateCats() {
+ const 
   {
-    name: "piel3.png",
-    cube: "Cube",
-  },
-  {
-    name: "nada",
-    cube: "Cube001",
-  },
-  
-  {
-    name: "nada",
-    cube: "Cube002",
-  },
-],);
-
-
-
-const move3d = () => {
-  if (modelRef2.current && glbRef2.current) {
-   /*  modelRef.current.rotation.x += 0.07; */
-
-    const mixer = new THREE.AnimationMixer(modelRef2.current);
-    glbRef2.current.animations.forEach((clip) => {
-      const action = mixer.clipAction(clip);
-      action.play();
- 
-    });
-
-    mixersRef.current.push(mixer); 
-    
-}
-}
-
-const CreatedArray = () => {
-
-  const newObject =  {
-    
-    name:selectedValuetext,
-    textura: selectedValue,
-    
+    move3d,CreatedArray,selectedValuetext, setSelectedValuetext,
+    selectedValue,
+    changeTexture,resetSelectedValue,handleUpdate,Volver
   }
+  = MichiCreateAndEditedHook()
+
+ const {changepage} = MichiHook()
+  const[loadingcreate,setLoadingCreate]= useState(false)
+ useEffect(() => {
+  if (changepage == 'CreateCats') {
+    
+    setLoadingCreate(true)
+    resetSelectedValue();
+  }
+}, [changepage]);
+
  
-console.log(newObject)
-  const crearUsuario = async () => {
-    try {
-      const response = await fetch('/api/NewMichis', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newObject),
-      });
-
-      if (!response.ok) {
-        throw new Error('Error en la solicitud');
-      }
-
-      /* const data = await response.json();
-      setResponseMessage(data.message || 'Usuario creado exitosamente'); */
-    } catch (error) {
-      console.error('Error:', error);
-      setError('Error al crear el usuario');
-    }
-  };
+ 
+if(!loadingcreate){
+  return(
+    <div>...espere</div>
+  )
+}else{
 
   
-  crearUsuario(); 
+  
 
+  return (
+    <div className="flex">
+      <button onClick={Volver}>volver</button>
+      <select
+        value={selectedValue[1].name}
+        onChange={(e) => {
+          handleUpdate(e, "Cube001");
+          changeTexture(e.target.value, "Cube001");
+        }}
+      >
+        <option value="anteojoos.png">Option 1</option>
+        <option value="anteojoos2.png">Option 2</option>
+        <option value="nada">Nada</option>
+      </select>
 
+      <select
+        value={selectedValue[2].name}
+        onChange={(e) => {
+          handleUpdate(e, "Cube002");
+          changeTexture(e.target.value, "Cube002");
+        }}
+      >
+        <option value="remera1.png">Option 1</option>
+        <option value="remera2.png">Option 2</option>
+        <option value="nada">Nada</option>
+      </select>
 
+      <div>
+        <Modelss texture={selectedValue} editandcreate={true} />
 
+        <input
+          onChange={(e) => {
+            setSelectedValuetext(e.target.value);
+          }}
+          type="text"
+          value={selectedValuetext}
+        />
+      </div>
 
-  move3d()
-
-setTimeout(() => {
-  setChangepage('Cats')
-}, 3000); 
-  }
- 
-
-
-
-
-const handleUpdate = (e,cubex) => {
-  const newValue = e.target.value; 
-  const targetCube = cubex;
-
-  setSelectedValue(prevState =>
-    prevState.map(item =>
-      item.cube == targetCube
-        ? { ...item, name: newValue } 
-        : item 
-    )
+      <button onClick={CreatedArray}>crear</button>
+    </div>
   );
-};
-
-
-
-
-
-   return (
-   
-<div className="flex">
-<button onClick={()=>setChangepage('Cats')}>volver</button>
-<select 
- 
-    value={selectedValue[1].name} 
-    onChange={(e) => {
-      handleUpdate(e,'Cube001')
-      changeTexture(e.target.value,'Cube001'); 
-    }}
-  >
-    <option value="anteojoos.png">Option 1</option>
-    <option value="anteojoos2.png">Option 2</option>
-    <option value="nada">Nada</option>
-  </select>
-
-
-   <select 
- 
- value={selectedValue[2].name}
-    onChange={(e) => {
-      handleUpdate(e,'Cube002')
-      changeTexture(e.target.value,'Cube002'); 
-    }}
-  >
-    <option value="remera1.png">Option 1</option>
-    <option value="remera2.png">Option 2</option>
-    <option value="nada">Nada</option>
-  </select> 
-      
-     
-            <div >
-            <Modelss texture={selectedValue} editandcreate={true}/>
-           
-            <input onChange={(e) => {
-      setSelectedValuetext(e.target.value)
-    }} type="text" value={selectedValuetext} />
-          </div>
-           
-
-       
-           <button onClick={CreatedArray}>crear</button>
-    
-   
-   </div>
- 
-  );  
+}
 }

@@ -2,10 +2,11 @@
 import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
-import { MichiHook } from "../context/HomessContext";
+
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { MichiCreateAndEditedHook } from "../context/MichiCreateAndEditedContext";
 export default function Modelss({texture,editandcreate,index,orbitControls}) {
-  const {modelRef2,glbRef2,mixersRef,otherRef} = MichiHook() 
+  const {modelRef2,glbRef2,mixersRef} = MichiCreateAndEditedHook() 
   const modelRef = useRef(null);
  /*  const mixersRef = useRef([]); */
   const glbRef = useRef(null);
@@ -41,6 +42,7 @@ const arrayRef = useRef([]);
         const model = gltf.scene;
         model.scale.set(10, 10, 10);
         modelRef.current = model;
+        console.log(modelRef.current)
         modelRef2.current = model
         glbRef.current = gltf;
         glbRef2.current = gltf;
@@ -99,9 +101,9 @@ controls.dampingFactor = 0.90;
     function animate() {
       const delta = clock.current.getDelta();
       mixersRef.current.forEach(mixer => mixer.update(delta));
-      if (modelRef.current && glbRef.current) {
+       if (modelRef.current && glbRef.current) {
         modelRef.current.rotation.y += 0.01;
-      }
+      } 
       renderer.render(scene, camera);
     }
 
