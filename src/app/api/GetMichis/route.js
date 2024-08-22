@@ -10,7 +10,7 @@ export async function GET() {
     
     const querySnapshot = await getDocs(q);
 const premios = ['oro','plata','bronce']
-    const usuarios = querySnapshot.docs.map((doc,index) => (
+    const michis = querySnapshot.docs.map((doc,index) => (
     index <= 2 ?
       {
       id: doc.id,
@@ -59,11 +59,10 @@ const premios = ['oro','plata','bronce']
 
   ))
 
-    console.log("Usuarios obtenidos: ", usuarios);
+  
 
-    return NextResponse.json(usuarios);
+    return NextResponse.json(michis);
   } catch (e) {
-    console.error("Error obteniendo documentos: ", e);
-    return NextResponse.json({ success: false, error: e.message });
+    console.error("errores: ", e);
   }
 }

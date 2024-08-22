@@ -4,20 +4,19 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import * as THREE from "three";
 import Modelss from "../Modelss";
 import { MichiHook } from "../../context/MichiContext";
-import { NewMichi } from "@/app/services/Crud.service";
 import { MichiCreateAndEditedHook } from "@/app/context/MichiCreateAndEditedContext";
 
 export default function CreateCats() {
  const 
   {
-    move3d,CreatedArray,selectedValuetext, setSelectedValuetext,
+    CreatedArray,selectedValuetext, setSelectedValuetext,
     selectedValue,
-    changeTexture,resetSelectedValue,handleUpdate,Volver
+    changeTexture,resetSelectedValue,handleUpdate,Volver,loadingcreate,setLoadingCreate
   }
   = MichiCreateAndEditedHook()
 
  const {changepage} = MichiHook()
-  const[loadingcreate,setLoadingCreate]= useState(false)
+  
  useEffect(() => {
   if (changepage == 'CreateCats') {
     

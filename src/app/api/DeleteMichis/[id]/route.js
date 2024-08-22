@@ -11,10 +11,10 @@ export async function DELETE(request, { params }) {
 
     return NextResponse.json({
       success: true,
-      message: "Documento eliminado correctamente.",
+      message: `Michi borrado`,
     });
   } catch (e) {
-    console.error("Error obteniendo documentos: ", e);
+    console.error("errores: ", e);
     return NextResponse.json({ success: false, error: e.message });
   }
 }

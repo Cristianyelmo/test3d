@@ -20,10 +20,10 @@ export async function PUT(request, { params }) {
     await updateDoc(docRef,data);
     return NextResponse.json({
       success: true,
-      message: "Documento actualizado correctamente.",
+      message: `Puntaje Agregado`,
     });
   } catch (e) {
-    console.error("Error obteniendo documentos: ", e);
+    console.error("errores: ", e);
     return NextResponse.json({ success: false, error: e.message });
   }
 }

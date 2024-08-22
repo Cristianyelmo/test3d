@@ -10,9 +10,12 @@ export async function PUT(request, { params }) {
 
     
     await updateDoc(docRef, newObject);
-    return NextResponse.json({ success: true, message: "Documento actualizado correctamente." });
+    return NextResponse.json({
+      success: true,
+      message: `Michi actualizado`,
+    });
   } catch (e) {
-    console.error("Error obteniendo documentos: ", e);
+    console.error("errores: ", e);
     return NextResponse.json({ success: false, error: e.message });
   }
 }

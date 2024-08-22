@@ -12,7 +12,7 @@ export async function POST(request) {
      const usuariosRef = collection(db, "gatos");  
 
     
-    const docRef = await addDoc(usuariosRef, {
+   await addDoc(usuariosRef, {
         name:newObject.name,
         color:newObject.textura[0].name,
         anteojos:newObject.textura[1].name,
@@ -20,12 +20,15 @@ export async function POST(request) {
         puntaje:0
     });
 
-    console.log("Documento agregado con ID: ", docRef.id); 
+ 
 
-    return NextResponse.json('hola');  
+    return NextResponse.json({
+      success: true,
+      message: `Michi nuevo`,
+    });  
   } catch (e) {
-    console.error("Error agregando documento: ", e);
-    return NextResponse.json({ success: false, error: e.message });  
+    console.error("errores: ", e);
+    return NextResponse.json({ success: false, error: e.message });
   }
 }
 

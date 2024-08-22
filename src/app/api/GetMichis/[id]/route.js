@@ -1,6 +1,6 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from "../../../lib/config/firebase";
-
+import { NextResponse } from "next/server";
 export async function GET(req, { params }) {
   const { id } = params;
 
@@ -35,14 +35,10 @@ const data = {
     ],
   }
 
-console.log(data)
 
-    return new Response(JSON.stringify(data), {
-      status: 200,
-    });
+
+    return NextResponse.json(data)
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Failed to retrieve document" }), {
-      status: 500,
-    });
+    console.error("errores: ", e);
   }
 }

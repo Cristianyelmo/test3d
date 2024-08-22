@@ -9,17 +9,15 @@ import { MichiCreateAndEditedHook } from "@/app/context/MichiCreateAndEditedCont
 
 export default function EditedCats() {
   const {
-    find,
     getid,
-    loadingedited
   } = MichiHook();
 
-  const {changeTexture,GetidMichi,Volver,selectedValueEdit, setselectedValueEdit,
-    selectedValueEdittext, setselectedValueEdittext,EditedArray} = MichiCreateAndEditedHook()
+  const {changeTexture,GetidMichix,Volver,selectedValueEdit, setselectedValueEdit,
+    selectedValueEdittext, setselectedValueEdittext,EditedArray,loadingedited,find} = MichiCreateAndEditedHook()
   useEffect(() => {
     
 
-    GetidMichi(getid);
+    GetidMichix(getid);
   }, [getid]);
 
   useEffect(() => {

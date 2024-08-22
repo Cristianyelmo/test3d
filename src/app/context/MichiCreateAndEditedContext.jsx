@@ -2,9 +2,13 @@
 "use client";
 import { createContext, useContext, useState, useRef } from "react";
 import * as THREE from "three";
-import { GetAllMichis, GetIdMichi, NewMichi, UptadeMichi } from "../services/Crud.service";
+import {
+  GetAllMichis,
+  GetIdMichi,
+  NewMichi,
+  UptadeMichi,
+} from "../services/Crud.service";
 import { MichiHook } from "./MichiContext";
-
 
 export const MichiCreateAndEditedContext = createContext(null);
 
@@ -13,50 +17,29 @@ export const MichiCreateAndEditedHook = () => {
 };
 
 export const MichiCreateAndEditedProvider = ({ children }) => {
-
-const {setChangepage,setLoading,setFind,find,setLoadingEdited
- ,getid} = MichiHook()
-
+  const { setChangepage, setLoading, getid } = MichiHook();
+  const [find, setFind] = useState({});
+  const [loadingedited, setLoadingEdited] = useState(false);
   const modelRef2 = useRef(null);
   const glbRef2 = useRef(null);
   const mixersRef = useRef([]);
-  const changeTexture = (hola, cube) => {
-    if (hola == "nada") {
-      modelRef2.current.traverse((child) => {
-        if (child.isMesh && child.name == cube) {
-          console.log(child.name);
-          child.visible = false;
-        }
-      });
-    } else {
-      const tex = new THREE.TextureLoader().load(`/texture/${hola}`);
-      console.log(tex);
-      tex.flipY = false;
-      modelRef2.current.traverse((node) => {
-        console.log(node.name);
-        if (node.isMesh && node.name == cube) {
-          node.visible = true;
-          node.material.map = tex;
-          node.material.transparent = true;
-          node.material.opacity = 0.9;
-          node.material.alphaTest = 0.1;
-        }
-      });
+  const changeTexture = (texture, cube) => {
+    const tex = new THREE.TextureLoader().load(`/texture/${texture}`);
 
-      /*    modelRef2.current.traverse((child) => {
-                if (child.isMesh && child.name == cube) {
-                  child.material.transparent = true;
-                  child.material.opacity = 0.9;
-                  child.material.alphaTest = 0.1;
-                }
-              }); */
-    }
+    tex.flipY = false;
+    modelRef2.current.traverse((node) => {
+      if (node.isMesh && node.name == cube) {
+        node.visible = true;
+        node.material.map = tex;
+        node.material.transparent = true;
+        node.material.opacity = 0.9;
+        node.material.alphaTest = 0.1;
+        if (texture == "nada") {
+          node.visible = false;
+        }
+      }
+    });
   };
-  
-  
-
-  
-  
 
   const move3d = () => {
     if (modelRef2.current && glbRef2.current) {
@@ -82,18 +65,8 @@ const {setChangepage,setLoading,setFind,find,setLoadingEdited
   const [selectedValue, setSelectedValue] = useState(initialState);
   const resetSelectedValue = () => {
     setSelectedValue(initialState);
-    setSelectedValuetext("")
+    setSelectedValuetext("");
   };
- /*  const handleUpdate = (e, cubex) => {
-    const newValue = e.target.value;
-    const targetCube = cubex;
-
-    setSelectedValue((prevState) =>
-      prevState.map((item) =>
-        item.cube == targetCube ? { ...item, name: newValue } : item
-      )
-    );
-  }; */
 
   const CreatedArray = () => {
     const newObject = {
@@ -104,13 +77,11 @@ const {setChangepage,setLoading,setFind,find,setLoadingEdited
     const NewMichix = async () => {
       try {
         await NewMichi(newObject);
-        await GetAllMichis()
+        await GetAllMichis();
       } catch (error) {
         console.error("Error:", error);
-       
-      }finally{
-        setLoading(true)
-
+      } finally {
+        setLoading(true);
       }
     };
 
@@ -123,10 +94,6 @@ const {setChangepage,setLoading,setFind,find,setLoadingEdited
     }, 3000);
   };
 
-
-
-
-
   const handleUpdate = (e, cubex) => {
     const newValue = e.target.value;
     setSelectedValue((prevState) =>
@@ -136,13 +103,11 @@ const {setChangepage,setLoading,setFind,find,setLoadingEdited
     );
   };
 
-
-  
-  const GetidMichi = async (id) => {
+  const GetidMichix = async (id) => {
     setLoadingEdited(false);
 
     try {
-      const result = await GetIdMichi(id)
+      const result = await GetIdMichi(id);
       setFind(result);
     } catch (error) {
       console.error("Error al obtener el documento:", error);
@@ -153,15 +118,14 @@ const {setChangepage,setLoading,setFind,find,setLoadingEdited
     }
   };
 
-  const Volver = ()=>{
-    setLoading(true)
-    setChangepage("Cats")
-
-  }
+  const Volver = () => {
+    setLoading(true);
+    setChangepage("Cats");
+  };
   const [selectedValueEdit, setselectedValueEdit] = useState({
     anteojos: "",
     ropa: "",
-    puntaje:0,
+    puntaje: 0,
   });
   const [selectedValueEdittext, setselectedValueEdittext] = useState("");
   const EditedArray = () => {
@@ -170,18 +134,16 @@ const {setChangepage,setLoading,setFind,find,setLoadingEdited
       color: "piel1.png",
       anteojos: selectedValueEdit.anteojos,
       remera: selectedValueEdit.ropa,
-      puntaje:selectedValueEdit.puntaje
+      puntaje: selectedValueEdit.puntaje,
     };
-console.log(EditMichisObject)
-console.log(getid)
+
     const updateMichi = async () => {
       try {
-        await UptadeMichi(getid,EditMichisObject)
-        setLoading(true)
+        await UptadeMichi(getid, EditMichisObject);
+        setLoading(true);
       } catch (error) {
         console.error("Error updating document:", error);
-      }finally{
-      
+      } finally {
       }
     };
 
@@ -193,17 +155,36 @@ console.log(getid)
       setChangepage("Cats");
     }, 3000);
   };
+
+
+  const[loadingcreate,setLoadingCreate]= useState(false)
   return (
     <MichiCreateAndEditedContext.Provider
       value={{
-        
-        move3d,CreatedArray,selectedValuetext, setSelectedValuetext,
-        selectedValue, setSelectedValue,Volver,
-        changeTexture,setChangepage,handleUpdate,
-        modelRef2,glbRef2,mixersRef,resetSelectedValue,GetidMichi,
-        selectedValueEdit, setselectedValueEdit,
-        selectedValueEdittext, setselectedValueEdittext,
-        EditedArray
+        move3d,
+        CreatedArray,
+        selectedValuetext,
+        setSelectedValuetext,
+        selectedValue,
+        setSelectedValue,
+        Volver,
+        changeTexture,
+        setChangepage,
+        handleUpdate,
+        modelRef2,
+        glbRef2,
+        mixersRef,
+        resetSelectedValue,
+        GetidMichix,
+        selectedValueEdit,
+        setselectedValueEdit,
+        selectedValueEdittext,
+        setselectedValueEdittext,
+        EditedArray,
+        loadingedited,
+        setLoadingEdited,
+        find,
+        loadingcreate,setLoadingCreate
       }}
     >
       {children}
