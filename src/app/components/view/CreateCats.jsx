@@ -47,7 +47,8 @@ const CreatedArray = () => {
   const newObject =  {
     
     name:selectedValuetext,
-    textura: selectedValue
+    textura: selectedValue,
+    
   }
  
 console.log(newObject)

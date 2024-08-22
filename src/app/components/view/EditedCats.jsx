@@ -80,6 +80,7 @@ export default function EditedCats() {
       color: "piel1.png",
       anteojos: selectedValue.anteojos,
       remera: selectedValue.ropa,
+      puntaje:find.puntaje
     };
 
     const updateMichi = async () => {

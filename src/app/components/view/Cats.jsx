@@ -90,7 +90,7 @@ export default function Cats() {
       if (currentPage > newTotalPages) {
         setCurrentPage(newTotalPages);
       }
-    }, 1500);
+    }, 2000);
   };
 
   const move3d = (index) => {
@@ -125,6 +125,40 @@ export default function Cats() {
 
   const totalPages = Math.ceil(usuarios.length / ITEMS_PER_PAGE);
 
+
+
+  
+  const AddScore = (id) =>{
+    const updateMichi = async () => {
+      try {
+        const response = await fetch(`/api/AddScore/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to update the document");
+        }
+
+        const result = await response.json(); // Convierte la respuesta en JSON
+        console.log("Document updated successfully:", result);
+      } catch (error) {
+        console.error("Error updating document:", error);
+      }finally{
+        fetchUsuarios();
+      }
+    };
+
+    updateMichi();
+
+
+
+
+
+  }
   return (
     <div className="flex">
       {viewModal && (
@@ -177,7 +211,12 @@ export default function Cats() {
                 index={gato.id}
               />
               <p>{gato.name}</p>
+              <p className="text-black">{gato.puntaje}</p>
+              <p className="text-black">{gato.premios}</p>
+              <button onClick={()=>AddScore(gato.id)}>puntaje</button>
               <div className="space-x-2">
+       
+                
                 <button
                   onClick={() => gatofind(gato.id)}
                   className="bg-black text-white p-2"

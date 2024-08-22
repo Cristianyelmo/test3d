@@ -16,7 +16,8 @@ export async function POST(request) {
         name:newObject.name,
         color:newObject.textura[0].name,
         anteojos:newObject.textura[1].name,
-        remera:newObject.textura[2].name
+        remera:newObject.textura[2].name,
+        puntaje:0
     });
 
     console.log("Documento agregado con ID: ", docRef.id); 
