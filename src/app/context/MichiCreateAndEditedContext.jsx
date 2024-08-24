@@ -29,14 +29,23 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
     tex.flipY = false;
     modelRef2.current.traverse((node) => {
       if (node.isMesh && node.name == cube) {
-        node.visible = true;
-        node.material.map = tex;
-        node.material.transparent = true;
-        node.material.opacity = 0.9;
-        node.material.alphaTest = 0.1;
+        if(cube == 'Cube001'){
+          
+          /* node.material.transparent = true;
+          node.material.opacity = 0.9;
+          node.material.alphaTest = 0.1;
+          node.material.needsUpdate = true; */
+       
+        node.visible = true; 
+      }
+       
         if (texture == "nada") {
           node.visible = false;
+        }else{
+          node.visible = true;
+          node.material.map = tex;
         }
+    
       }
     });
   };
@@ -56,9 +65,9 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
   };
 
   const initialState = [
-    { name: "piel3.png", cube: "Cube" },
+    { name: "dfd.png", cube: "Cube002" },
     { name: "nada", cube: "Cube001" },
-    { name: "nada", cube: "Cube002" },
+    { name: "nada", cube: "Cube003" },
   ];
 
   const [selectedValuetext, setSelectedValuetext] = useState("");
@@ -85,7 +94,7 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
       }
     };
 
-    NewMichix();
+    NewMichix(); 
 
     move3d();
 

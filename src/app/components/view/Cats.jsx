@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import Modelss from "../Modelss";
 import { MichiHook } from "../../context/MichiContext";
+import { MichiCreateAndEditedHook } from "@/app/context/MichiCreateAndEditedContext";
 
 export default function Cats() {
   const {
@@ -20,12 +21,18 @@ export default function Cats() {
     totalPages,
     currentPage,
     setModal,
-    modal
+    modal,
+    deletex,
+    setDelete
   } = MichiHook();
-
+const {resetSelectedValue} =MichiCreateAndEditedHook()
   useEffect(() => {
     GetallMichis();
   }, []);
+  const updateNew = () => {
+    setChangepage("CreateCats");
+    resetSelectedValue();
+  };
 
   if (loading) {
     return <div>...espere</div>;
@@ -73,13 +80,24 @@ export default function Cats() {
           </div>
         )}
 
+
+
+{deletex && (
+          <div
+            className={`fixed inset-0 z-40 flex items-center justify-center bg-gray-900 bg-opacity-50 
+  transition-opacity duration-500 ease-in-out ${
+    deletex ? "opacity-100" : "opacity-0"
+  }`}
+          ></div>
+        )}
+
         <div className="flex flex-col">
           <div className="flex">
             {currentGatos.map((gato, index) => (
               <div
                 key={gato.id}
                 className={` ${
-                  idanimation == gato.id ? "animation-delete" : "animation-open"
+                  idanimation == gato.id ? (setDelete(true), "animation-delete z-50"): "animation-open"
                 }`}
               >
                 <Modelss
@@ -116,7 +134,7 @@ export default function Cats() {
           </div>
           <button
             className="border-[1px] border-black"
-            onClick={() => setChangepage("CreateCats")}
+            onClick={updateNew}
           >
             crear
           </button>

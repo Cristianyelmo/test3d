@@ -31,7 +31,11 @@ export default function Modelss({
       800
     );
     const renderer = new THREE.WebGLRenderer();
-
+   /*  scene.background = new THREE.Color(0xffffff); */
+   const loader2 = new THREE.TextureLoader();
+loader2.load('/texture/Pixel Art Wallpapers - post.jpeg', function(texture) {
+    scene.background = texture;
+});
     const container = containerRef.current;
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -44,7 +48,7 @@ export default function Modelss({
 
     const loader = new GLTFLoader();
     loader.load(
-      "/3d/gatoosfgfg.glb",
+      "/3d/he.glb",
       function (gltf) {
         const model = gltf.scene;
         model.scale.set(10, 10, 10);

@@ -29,17 +29,22 @@
   from {
     opacity: 1;
     transform: translateY(0);
+    filter:  brightness(0%) blur(0px) grayscale(100%);
+  
   }
   to {
     opacity: 0;
-    transform: translateY(-20px);
+    filter: brightness(500%) blur(5px) grayscale(100%);
+    
+   
+    transform: translateY(-30px);
   }
 }
 
 
 
 .animation-delete {
-  animation: animation-delete 1.5s  forwards;
+  animation: animation-delete 3s  forwards;
 }
 
 

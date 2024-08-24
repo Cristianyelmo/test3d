@@ -83,7 +83,8 @@ export const MichiProvider = ({ children }) => {
         } catch (error) {
           console.error("Error deleting document:", error);
         } finally {
-          GetallMichis();
+          await GetallMichis();
+          setDelete(false)
         }
       };
       DeleteMichis();
@@ -109,7 +110,7 @@ export const MichiProvider = ({ children }) => {
   };
 
   const totalPages = Math.ceil(gatos.length / ITEMS_PER_PAGE);
-
+  const [deletex,setDelete] = useState(false)
   return (
     <MichiContext.Provider
       value={{
@@ -141,6 +142,7 @@ export const MichiProvider = ({ children }) => {
         setCurrentPage,
         setModal,
         modal,
+        deletex,setDelete
       }}
     >
       {children}

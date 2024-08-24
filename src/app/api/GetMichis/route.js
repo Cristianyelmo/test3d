@@ -18,7 +18,7 @@ const premios = ['oro','plata','bronce']
       textura: [
         {
           name: doc.data().color,
-          cube: "Cube",
+          cube: "Cube002",
         },
         {
           name: doc.data().anteojos,
@@ -26,7 +26,7 @@ const premios = ['oro','plata','bronce']
         },
         {
           name: doc.data().remera,
-          cube: "Cube002",
+          cube: "Cube003",
         },
       ],
       puntaje:doc.data().puntaje,
@@ -40,7 +40,7 @@ const premios = ['oro','plata','bronce']
       textura: [
         {
           name: doc.data().color,
-          cube: "Cube",
+          cube: "Cube002",
         },
         {
           name: doc.data().anteojos,
@@ -48,7 +48,7 @@ const premios = ['oro','plata','bronce']
         },
         {
           name: doc.data().remera,
-          cube: "Cube002",
+          cube: "Cube003",
         },
       ],
       puntaje:doc.data().puntaje,
