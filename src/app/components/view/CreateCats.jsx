@@ -48,7 +48,16 @@ if(!loadingcreate){
       >
         <option value="dfd.png">Option 1</option>
         <option value="dfd7.png">Option 2</option>
-      
+        <option value="dfd8.png">Option 2</option>
+        <option value="dfd9.png">Option 2</option>
+        <option value="dfd10.png">Option 2</option>
+        <option value="dfd11.png">Option 2</option>
+        <option value="dfd12.png">Option 2</option>
+        <option value="dfd13.png">Option 2</option>
+        <option value="dfd14.png">Option 2</option>
+        <option value="dfd15.png">Option 2</option>
+        <option value="dfd16.png">Option 2</option>
+        <option value="dfd17.png">Option 2</option>
       </select>
 
 
@@ -63,6 +72,12 @@ if(!loadingcreate){
       >
         <option value="Proyecto nuevocvc.png">Option 1</option>
         <option value="Proyecto nuevocvc1.png">Option 2</option>
+        <option value="Proyecto nuevocvc2.png">Option 2</option>
+        <option value="Proyecto nuevocvc3.png">Option 2</option>
+        <option value="Proyecto nuevocvc4.png">Option 2</option>
+        <option value="Proyecto nuevocvc5.png">Option 2</option>
+        <option value="Proyecto nuevocvc6.png">Option 2</option>
+        <option value="Proyecto nuevocvc7.png">Option 2</option>
         <option value="nada">Nada</option>
       </select>
 
