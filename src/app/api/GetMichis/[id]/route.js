@@ -22,7 +22,7 @@ const data = {
     textura: [
       {
         name: docSnap.data().color,
-        cube: "Cube",
+        cube: "Cube002",
       },
       {
         name: docSnap.data().anteojos,
@@ -30,7 +30,11 @@ const data = {
       },
       {
         name: docSnap.data().remera,
-        cube: "Cube002",
+        cube: "Cube003",
+      },
+      {
+        name: 'nada',
+        cube: "Cube",
       },
     ],
   }

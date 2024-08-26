@@ -9,7 +9,7 @@ export default function Modelss({
   texture,
   editandcreate,
   index,
-  orbitControls,
+  orbitControls
 }) {
   const { modelRef2, glbRef2, mixersRef } = MichiCreateAndEditedHook();
   const modelRef = useRef(null);
@@ -31,11 +31,14 @@ export default function Modelss({
       800
     );
     const renderer = new THREE.WebGLRenderer();
-   /*  scene.background = new THREE.Color(0xffffff); */
-   const loader2 = new THREE.TextureLoader();
-loader2.load('/texture/Pixel Art Wallpapers - post.jpeg', function(texture) {
-    scene.background = texture;
-});
+    /*  scene.background = new THREE.Color(0xffffff); */
+    const loader2 = new THREE.TextureLoader();
+    loader2.load(
+      "/texture/Pixel Art Wallpapers - post.jpeg",
+      function (texture) {
+        scene.background = texture;
+      }
+    );
     const container = containerRef.current;
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -48,7 +51,7 @@ loader2.load('/texture/Pixel Art Wallpapers - post.jpeg', function(texture) {
 
     const loader = new GLTFLoader();
     loader.load(
-      "/3d/he.glb",
+      "/3d/gatoante.glb",
       function (gltf) {
         const model = gltf.scene;
         model.scale.set(10, 10, 10);
@@ -128,7 +131,7 @@ loader2.load('/texture/Pixel Art Wallpapers - post.jpeg', function(texture) {
     <div className={`border-[3px] border-[#00FF00]  `}>
       <div
         ref={containerRef}
-        className={`w-[200px] h-[200px] test-${index} `}
+        className={`w-[300px] h-[300px] test-${index} `}
       ></div>
     </div>
   );

@@ -93,11 +93,14 @@ if(!loadingcreate){
         <option value="dfd4.png">Boca</option>
         <option value="dfd5.png">Punisher</option>
         <option value="dfd6.png">Trajecito</option>
+        <option value="dfd18.png">Trajecito</option>
+        <option value="dfd19.png">Trajecito</option>
+        <option value="dfd20.png">Trajecito</option>
         <option value="nada">Nada</option>
       </select>
 
       <div>
-        <Modelss texture={selectedValue} editandcreate={true} />
+        <Modelss  texture={selectedValue} editandcreate={true} />
 
         <input
           onChange={(e) => {

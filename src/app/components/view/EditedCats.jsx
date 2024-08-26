@@ -15,7 +15,7 @@ export default function EditedCats() {
   const {changeTexture,GetidMichix,Volver,selectedValueEdit, setselectedValueEdit,
     selectedValueEdittext, setselectedValueEdittext,EditedArray,loadingedited,find} = MichiCreateAndEditedHook()
   useEffect(() => {
-    
+    console.log(find)
 
     GetidMichix(getid);
   }, [getid]);
@@ -25,6 +25,7 @@ export default function EditedCats() {
       setselectedValueEdit({
         anteojos: find.textura[1].name || "",
         ropa: find.textura[2].name || "",
+        color: find.textura[0].name || "",
         puntaje:find.puntaje
       });
       setselectedValueEdittext(find.name);
@@ -53,9 +54,15 @@ export default function EditedCats() {
             changeTexture(e.target.value, "Cube001");
           }}
         >
-          <option value="anteojoos.png">Option 1</option>
-          <option value="anteojoos2.png">Option 2</option>
-          <option value="nada">Nada</option>
+          <option value="Proyecto nuevocvc.png">Option 1</option>
+        <option value="Proyecto nuevocvc1.png">Option 2</option>
+        <option value="Proyecto nuevocvc2.png">Option 2</option>
+        <option value="Proyecto nuevocvc3.png">Option 2</option>
+        <option value="Proyecto nuevocvc4.png">Option 2</option>
+        <option value="Proyecto nuevocvc5.png">Option 2</option>
+        <option value="Proyecto nuevocvc6.png">Option 2</option>
+        <option value="Proyecto nuevocvc7.png">Option 2</option>
+        <option value="nada">Nada</option>
         </select>
 
         <select
@@ -65,12 +72,45 @@ export default function EditedCats() {
               ...prevState,
               ropa: e.target.value,
             }));
+            changeTexture(e.target.value, "Cube003");
+          }}
+        >
+          <option value="dfd2.png">Argentina</option>
+        <option value="dfd3.png">River</option>
+        <option value="dfd4.png">Boca</option>
+        <option value="dfd5.png">Punisher</option>
+        <option value="dfd6.png">Trajecito</option>
+        <option value="dfd18.png">Trajecito</option>
+        <option value="dfd19.png">Trajecito</option>
+        <option value="dfd20.png">Trajecito</option>
+        <option value="nada">Nada</option>
+        </select>
+
+
+
+
+        <select
+          value={selectedValueEdit.color}
+          onChange={(e) => {
+            setselectedValueEdit((prevState) => ({
+              ...prevState,
+              color: e.target.value,
+            }));
             changeTexture(e.target.value, "Cube002");
           }}
         >
-          <option value="remera1.png">Option 1</option>
-          <option value="remera2.png">Option 2</option>
-          <option value="nada">Nada</option>
+          <option value="dfd.png">Option 1</option>
+        <option value="dfd7.png">Option 2</option>
+        <option value="dfd8.png">Option 2</option>
+        <option value="dfd9.png">Option 2</option>
+        <option value="dfd10.png">Option 2</option>
+        <option value="dfd11.png">Option 2</option>
+        <option value="dfd12.png">Option 2</option>
+        <option value="dfd13.png">Option 2</option>
+        <option value="dfd14.png">Option 2</option>
+        <option value="dfd15.png">Option 2</option>
+        <option value="dfd16.png">Option 2</option>
+        <option value="dfd17.png">Option 2</option>
         </select>
 
         <div className="animation-open">

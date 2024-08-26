@@ -52,10 +52,14 @@ export const MichiProvider = ({ children }) => {
     try {
       const data = await GetAllMichis();
       setGatos(data);
+      console.log(data)
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+     
     }
   };
 

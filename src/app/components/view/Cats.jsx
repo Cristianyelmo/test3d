@@ -28,12 +28,13 @@ export default function Cats() {
 const {resetSelectedValue} =MichiCreateAndEditedHook()
   useEffect(() => {
     GetallMichis();
+    
   }, []);
   const updateNew = () => {
     setChangepage("CreateCats");
     resetSelectedValue();
   };
-
+console.log(currentGatos)
   if (loading) {
     return <div>...espere</div>;
   } else {

@@ -52,7 +52,7 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
 
   const move3d = () => {
     if (modelRef2.current && glbRef2.current) {
-      /*  modelRef.current.rotation.x += 0.07; */
+       modelRef2.current.rotation.y += 0
 
       const mixer = new THREE.AnimationMixer(modelRef2.current);
       glbRef2.current.animations.forEach((clip) => {
@@ -68,6 +68,7 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
     { name: "dfd.png", cube: "Cube002" },
     { name: "nada", cube: "Cube001" },
     { name: "nada", cube: "Cube003" },
+    { name: "nada", cube: "Cube" }
   ];
 
   const [selectedValuetext, setSelectedValuetext] = useState("");
@@ -78,6 +79,8 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
   };
 
   const CreatedArray = () => {
+    
+    
     const newObject = {
       name: selectedValuetext,
       textura: selectedValue,
@@ -134,13 +137,14 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
   const [selectedValueEdit, setselectedValueEdit] = useState({
     anteojos: "",
     ropa: "",
+    color: "",
     puntaje: 0,
   });
   const [selectedValueEdittext, setselectedValueEdittext] = useState("");
   const EditedArray = () => {
     const EditMichisObject = {
       name: selectedValueEdittext,
-      color: "piel1.png",
+      color: selectedValueEdit.color,
       anteojos: selectedValueEdit.anteojos,
       remera: selectedValueEdit.ropa,
       puntaje: selectedValueEdit.puntaje,

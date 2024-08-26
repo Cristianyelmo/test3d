@@ -28,9 +28,13 @@ const premios = ['oro','plata','bronce']
           name: doc.data().remera,
           cube: "Cube003",
         },
+        {
+          name: !doc.data().puntaje == 0 ? `${premios[index]}.png`  : 'nada',
+          cube: "Cube",
+        },
       ],
       puntaje:doc.data().puntaje,
-      premios:!doc.data().puntaje == 0 ? premios[index] : 'no'
+      
 
     } :
 
@@ -50,9 +54,13 @@ const premios = ['oro','plata','bronce']
           name: doc.data().remera,
           cube: "Cube003",
         },
+        {
+          name:'nada',
+          cube: "Cube",
+        }
       ],
       puntaje:doc.data().puntaje,
-      premios:'no'
+    
     }
 
  
