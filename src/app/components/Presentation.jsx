@@ -58,7 +58,7 @@ setTimeout(() => {
 
     const loader = new GLTFLoader();
     loader.load(
-      '/3d/ss.glb',
+      '/3d/michimaker-spacewdss.glb',
       function (gltf) {
         const model = gltf.scene;
         model.scale.set(6.5, 6.5, 6.5);
@@ -74,7 +74,7 @@ textureLoader.load('/texture/Untitled.jpeg', function(texture) {
       
 
      
-        const ambientLight = new THREE.AmbientLight(0xffffff, 6);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 3);
         scene.add(ambientLight);
         scene.add(model);
 
