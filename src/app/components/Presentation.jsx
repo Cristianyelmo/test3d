@@ -198,7 +198,7 @@ modelRef.current.traverse((node) => {
 
 
 </div>
-<Image src="/texture/sss.png" className="absolute bottom-[140px]  lg:bottom-[-100px] left-1/2 transform -translate-x-1/2 mb-4" height={1280} width={720}/>
+<Image src="/texture/sss.png" className="absolute h-[600px] bottom-[0px]  lg:bottom-[-100px] left-1/2 transform -translate-x-1/2 mb-4" height={1280} width={720}/>
 
    {/*  <main className={`h-full w-full bg-white ${loading && 'absolute'} `}>
 
