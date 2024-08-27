@@ -25,6 +25,11 @@
 }
 
 
+body{
+  background-color: black;
+}
+
+
 @keyframes animation-delete {
   from {
     opacity: 1;

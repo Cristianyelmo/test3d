@@ -57,7 +57,7 @@ export const MichiProvider = ({ children }) => {
       console.error("Error fetching data:", error);
     } finally {
       setTimeout(() => {
-        setLoading(false);
+       setLoading(false); 
       }, 1000);
      
     }

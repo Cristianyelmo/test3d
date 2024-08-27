@@ -36,7 +36,7 @@ const {resetSelectedValue} =MichiCreateAndEditedHook()
   };
 console.log(currentGatos)
   if (loading) {
-    return <div>...espere</div>;
+    return <div className="bg-black text-white ">...espere</div>;
   } else {
     return (
       <div className="flex">

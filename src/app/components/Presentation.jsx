@@ -39,7 +39,7 @@ export default function Presentation() {
   const [presentationanimation,setPresentationanimation]= useState('')
 
   
-  /* useEffect(()=>{
+ useEffect(()=>{
 setTimeout(() => {
   setPresentationanimation('opacity-presentation')
 }, 5000);
@@ -47,7 +47,7 @@ setTimeout(() => {
 setTimeout(() => {
     setChangePagePresentation(false)
 }, 8000);
-  },[])    */ 
+  },[])    
 
 
   useEffect(() => {
@@ -193,13 +193,13 @@ modelRef.current.traverse((node) => {
 
   return (
     <div   ref={containerRef} className="relative overflow-hidden h-screen w-full">
-<div className={`bg-black h-full w-full absolute opacity-0 ${presentationanimation}`}>
+<div className={`bg-black z-30 h-full w-full absolute opacity-0 ${presentationanimation}`}>
 
 
 
 </div>
 {/* <Image src="/texture/sss.png" className=" absolute h-[600px] bottom-[0px]  lg:bottom-[-100px] left-1/2 transform -translate-x-1/2 mb-4  opacity-0 presentation-new2" height={1280} width={720}/> */}
-<h1 className="neon-text absolute text-4xl lg:text-5xl lg:top-[450px]  h-[600px] bottom-[-320px]  bottom-0 left-1/2 transform -translate-x-1/2 mb-4  presentation-new2 ">PetMaker</h1>
+<h1 className="neon-text z-10 absolute text-4xl lg:text-5xl lg:top-[450px]  h-[600px] bottom-[-320px]  bottom-0 left-1/2 transform -translate-x-1/2 mb-4  presentation-new2 ">PetMaker</h1>
    {/*  <main className={`h-full w-full bg-white ${loading && 'absolute'} `}>
 
   

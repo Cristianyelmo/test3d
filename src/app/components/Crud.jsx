@@ -21,8 +21,8 @@ useEffect(()=>{
    return (
     <div>
     <div className={`bg-black absolute z-30 inset-0 opacity-presentation2 ${presentacioncrud}`}></div>
-    <main className={` bg-white `}>
-<div className=" mt-10 bg-white flex space-x-10">
+    <main className={`bg-black`}>
+<div className="mt-10 bg-black flex space-x-10">
 {changepage == 'Cats' ? <Cats/> : changepage == 'EditedCats' ?  <EditedCats/> : changepage == 'CreateCats' && <CreateCats/>}
   </div>
 
