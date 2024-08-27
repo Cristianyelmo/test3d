@@ -1,10 +1,19 @@
-import { Inter } from "next/font/google";
+
 import "./globals.css";
+import localFont from "next/font/local";
 import { MichiProvider } from "./context/MichiContext";
 import { MichiCreateAndEditedProvider } from "./context/MichiCreateAndEditedContext";
+const SpaceMonkey = localFont({
+  src: [
+    {
+      path: "../../public/font/SpaceMonkeyBold-Ea5On.otf",
+      weight: "400",
+    }
+  ],
+});
 
 
-const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata = {
   title: "Create Next App",
@@ -19,7 +28,7 @@ export default function RootLayout({ children }) {
 
    
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={SpaceMonkey.className}>{children}</body>
 
     </html>
    

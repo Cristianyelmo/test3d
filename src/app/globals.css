@@ -102,3 +102,75 @@
 .opacity-presentation2 {
   animation: opacity-presentation2 2s  forwards;
 }
+
+
+
+
+
+@keyframes presentation-new {
+  0% {
+    opacity: 0;
+    
+  
+  }
+  99%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    
+  }
+}
+
+
+
+.presentation-new2 {
+  animation: presentation-new 5s  forwards;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.neon-text {
+
+  color: #01d8d8; /* Color de base */
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  /* Efecto de sombra múltiple para simular el brillo */
+  text-shadow: 
+      0 0 5px #0ff, 
+      0 0 10px #0ff, 
+      0 0 20px #0ff, 
+      0 0 40px #0ff, 
+      0 0 80px #00ffff, 
+      0 0 90px #0ff, 
+      0 0 100px #0ff;
+
+}
+
+/* Animación de parpadeo */
