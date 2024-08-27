@@ -16,7 +16,7 @@ export default function Home() {
  
   return (
     <div>
-       {/*   {  changePagePresentation ? */} <Presentation/> {/*  : <Crud/>}  */}
+{changePagePresentation ?    <Presentation/>    : <Crud/>}  
    </div>
  
   )

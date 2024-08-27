@@ -51,7 +51,7 @@ export default function Modelss({
 
     const loader = new GLTFLoader();
     loader.load(
-      "/3d/gatoante.glb",
+      "/3d/chavo.glb",
       function (gltf) {
         const model = gltf.scene;
         model.scale.set(10, 10, 10);

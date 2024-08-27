@@ -4,6 +4,8 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import { useRouter } from 'next/navigation';
 import { MichiHook } from "../context/MichiContext";
+
+
 export default function Presentation() {
    const {changePagePresentation,setChangePagePresentation} =  MichiHook()
   const modelRef = useRef(null);
@@ -12,31 +14,30 @@ export default function Presentation() {
   const clock = useRef(new THREE.Clock());
   const [loading, setLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
-  const [animation, setAnimation] = useState(2);
-  /* useEffect(() => {
+  const [animation, setAnimation] = useState('dfd');
+ /*   useEffect(() => {
     const interval = setInterval(() => {
-      setAnimation(prevAnimation => (prevAnimation === 2 ? 3 : 2));
-    }, 1000);
+      setAnimation(prevAnimation => (prevAnimation === 'dfd' ? 'dfd-2' : 'dfd'));
+    }, 500);
 
     return () => clearInterval(interval);
-  }, []); */
-
-  /* useEffect(() => {
-    const tex = new THREE.TextureLoader().load(`/texture/Eggette_DIFF (${animation}).png`);
+  }, []); 
+  useEffect(() => {
+    const tex = new THREE.TextureLoader().load(`/texture/${animation}.png`);
     tex.flipY = false;
 
     if (modelRef.current) {
       modelRef.current.traverse((node) => {
-        if (node.isMesh) {
+        if (node.isMesh && node.name == 'Cube005') {
           node.material.map = tex;
         }
       });
     }
-  }, [animation]); */
+  }, [animation]);  */
   const [presentationanimation,setPresentationanimation]= useState('')
 
   
-  useEffect(()=>{
+  /*  useEffect(()=>{
 setTimeout(() => {
   setPresentationanimation('opacity-presentation')
 }, 5000);
@@ -44,7 +45,7 @@ setTimeout(() => {
 setTimeout(() => {
     setChangePagePresentation(false)
 }, 8000);
-  },[])
+  },[])   */
 
 
   useEffect(() => {
@@ -56,9 +57,27 @@ setTimeout(() => {
 
     camera.position.set(0, 50, 70);
 
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
     const loader = new GLTFLoader();
     loader.load(
-      '/3d/michimaker-spacewdss.glb',
+      '/3d/michimaker-spaceRAP1323.glb',
       function (gltf) {
         const model = gltf.scene;
         model.scale.set(6.5, 6.5, 6.5);
@@ -71,10 +90,48 @@ textureLoader.load('/texture/Untitled.jpeg', function(texture) {
   scene.background = texture;
 });
 
-      
+
+const arrayObjectTexture = [
+  {
+    image:'xd7.png',
+    cube:'Cube004'
+  },
+  {
+    image:'luzperro.png',
+    cube:'Cube016'
+  },
+  {
+    image:'michi.png',
+    cube:'Cube017'
+  }
+  
+]
+arrayObjectTexture.map((item)=>{
+const tex = new THREE.TextureLoader().load(
+ 
+  `/texture/${item.image}`
+);
+
+tex.flipY = false;
+modelRef.current.traverse((node) => {
+  if (node.isMesh && node.name == item.cube) {
+   
+      node.material.transparent = true;
+      node.material.opacity = 0.9;
+      node.material.alphaTest = 0.1;
+    
+    
+
+    
+      node.material.map = tex;
+    
+  }
+});
+
+})  
 
      
-        const ambientLight = new THREE.AmbientLight(0xffffff, 3);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 2);
         scene.add(ambientLight);
         scene.add(model);
 
@@ -106,6 +163,9 @@ textureLoader.load('/texture/Untitled.jpeg', function(texture) {
    /*    if (modelRef.current && glbRef.current) {
         modelRef.current.rotation.y += 0.01;
       } */
+
+
+        
       renderer.render(scene, camera);
     }
 
