@@ -50,14 +50,14 @@ export const MichiProvider = ({ children }) => {
 
   const GetallMichis = async () => {
     try {
-      const data = await GetAllMichis();
-      setGatos(data);
+      /* const data = await GetAllMichis();
+      setGatos(data); */
       console.log(data)
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
       setTimeout(() => {
-       setLoading(false); 
+   /*     setLoading(false);   */
       }, 1000);
      
     }

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Modelss from "../Modelss";
 import { MichiHook } from "../../context/MichiContext";
 import { MichiCreateAndEditedHook } from "@/app/context/MichiCreateAndEditedContext";
+import Image from "next/image";
 
 export default function Cats() {
   const {
@@ -36,7 +37,13 @@ const {resetSelectedValue} =MichiCreateAndEditedHook()
   };
 console.log(currentGatos)
   if (loading) {
-    return <div className="bg-black text-white ">...espere</div>;
+    return <div className="bg-black text-white relative h-screen w-full">
+      <div className="absolute inset-0 flex flex-col justify-center items-center">
+    <p className="hollow-neon-text text-3xl mb-4">cargando...</p>
+    <Image src="/texture/tte.png" width={128} height={128} alt="Cargando" />
+  </div>
+      </div>;
+        
   } else {
     return (
       <div className="flex">

@@ -179,3 +179,22 @@ body{
 }
 
 /* Animación de parpadeo */
+
+
+
+.hollow-neon-text {
+  color: transparent; /* El color del texto será transparente */
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  /* Establece el color y el grosor del trazo */
+  -webkit-text-stroke: 1px #01d8d8; 
+  /* Efecto de sombra múltiple para simular el brillo */
+  text-shadow: 
+  0 0 3px rgb(0, 238, 238), 
+  0 0 6px rgb(5, 207, 207), 
+  0 0 12px rgb(0, 95, 95), 
+  0 0 24px #005050, 
+  0 0 36px #00cfcf, 
+  0 0 48px #025757;
+}

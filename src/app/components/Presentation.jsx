@@ -44,6 +44,21 @@ setTimeout(() => {
   setPresentationanimation('opacity-presentation')
 }, 5000);
 
+
+setTimeout(() => {
+  if (modelRef.current && glbRef.current) {
+    modelRef.current.rotation.y += 0
+
+   const mixer = new THREE.AnimationMixer(modelRef.current);
+   glbRef.current.animations.forEach((clip) => {
+     const action = mixer.clipAction(clip);
+     action.play();
+   });
+
+   mixersRef.current.push(mixer);
+ }
+}, 4000);
+
 setTimeout(() => {
     setChangePagePresentation(false)
 }, 8000);
@@ -85,7 +100,7 @@ setTimeout(() => {
 
     const loader = new GLTFLoader();
     loader.load(
-      '/3d/testpresentation.glb',
+      '/3d/michimaker-spaceoka23.glb',
       function (gltf) {
         const model = gltf.scene;
         model.scale.set(6.5, 6.5, 6.5);
