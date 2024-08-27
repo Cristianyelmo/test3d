@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import { useRouter } from 'next/navigation';
 import { MichiHook } from "../context/MichiContext";
+import Image from "next/image";
 
 
 export default function Presentation() {
@@ -15,6 +16,7 @@ export default function Presentation() {
   const [loading, setLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
   const [animation, setAnimation] = useState('dfd');
+  const containerRef = useRef(null);
  /*   useEffect(() => {
     const interval = setInterval(() => {
       setAnimation(prevAnimation => (prevAnimation === 'dfd' ? 'dfd-2' : 'dfd'));
@@ -37,7 +39,7 @@ export default function Presentation() {
   const [presentationanimation,setPresentationanimation]= useState('')
 
   
-  /*  useEffect(()=>{
+  useEffect(()=>{
 setTimeout(() => {
   setPresentationanimation('opacity-presentation')
 }, 5000);
@@ -45,16 +47,22 @@ setTimeout(() => {
 setTimeout(() => {
     setChangePagePresentation(false)
 }, 8000);
-  },[])   */
+  },[])    
 
 
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 800);
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+   /*  renderer.setSize(window.innerWidth, window.innerHeight); */
+   /*  document.body.appendChild(renderer.domElement); */
+    const container = containerRef.current;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
+    renderer.setSize(width, height);
+
+    container.appendChild(renderer.domElement);
     camera.position.set(0, 50, 70);
 
 
@@ -77,7 +85,7 @@ setTimeout(() => {
 
     const loader = new GLTFLoader();
     loader.load(
-      '/3d/michimaker-spaceRAP1323.glb',
+      '/3d/testpresentation.glb',
       function (gltf) {
         const model = gltf.scene;
         model.scale.set(6.5, 6.5, 6.5);
@@ -172,7 +180,7 @@ modelRef.current.traverse((node) => {
     renderer.setAnimationLoop(animate);
 
     return () => {
-      document.body.removeChild(renderer.domElement);
+      container.removeChild(renderer.domElement);
     };
   }, []);
 
@@ -184,9 +192,16 @@ modelRef.current.traverse((node) => {
  
 
   return (
+    <div   ref={containerRef} className="relative overflow-hidden h-screen w-full">
+<div className={`bg-black h-full w-full absolute opacity-0 ${presentationanimation}`}>
 
-<div className={`bg-black h-full w-full absolute opacity-0 ${presentationanimation}`}></div>
-   /*  <main className={`h-full w-full bg-white ${loading && 'absolute'} `}>
+
+
+</div>
+<Image src="/texture/sss.png" className="absolute  bottom-[-100px] left-1/2 transform -translate-x-1/2 mb-4" height={1280} width={720}/>
+
+   {/*  <main className={`h-full w-full bg-white ${loading && 'absolute'} `}>
+
   
  {  loading ?   ( <div className="loader h-full w-full z-50 absolute ">
           Cargando... 
@@ -198,6 +213,8 @@ modelRef.current.traverse((node) => {
       
       )}
     
-    </main> */
+    </main>  */}
+
+    </div>
   );
 }
