@@ -135,9 +135,9 @@ console.log(width2)
     function animate() {
       const delta = clock.current.getDelta();
       mixersRef.current.forEach((mixer) => mixer.update(delta));
-      if (modelRef.current && glbRef.current) {
+    /*   if (modelRef.current && glbRef.current) {
         modelRef.current.rotation.y += 0.01;
-      }
+      } */
       renderer.render(scene, camera);
     }
 
@@ -153,7 +153,7 @@ console.log(width2)
     <div className={`neon-border`}>
       <div
         ref={containerRef}
-        className={`w-[300px] h-[300px]`}
+        className={`w-[300px] h-[300px] `}
       ></div>
     </div>
   );
