@@ -47,12 +47,12 @@ export default function Modelss({ texture, editandcreate, orbitControls }) {
     /*  camera.position.set(0, 20, 100); */
 
     const width2 = window.innerWidth;
-
-    if (width2 < 768) {
+    camera.position.set(0, 20, 50);
+    /* if (width2 < 768) {
       camera.position.set(0, 20, 100);
     } else {
       camera.position.set(0, 20, 50);
-    }
+    } */
 
     console.log(width2);
     const loader = new GLTFLoader();

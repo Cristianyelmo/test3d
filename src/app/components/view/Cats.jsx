@@ -114,14 +114,14 @@ console.log(currentGatos)
                   idanimation == gato.id ? (setDelete(true), "animation-delete z-50"): "animation-open"
                 }`}
               >
-               {/*   <Modelss
+                  <Modelss
                   texture={gato.textura}
                   editandcreate={false}
                   
-                />  */} 
-                <div className={`w-[300px] h-[300px] `}>
+                />  
+                {/* <div className={`w-[300px] h-[300px] `}>
 
-                </div>
+                </div> */}
                 <p>{gato.name}</p>
                 <p className="text-black">{gato.puntaje}</p>
                 <p className="text-black">{gato.premios}</p>
