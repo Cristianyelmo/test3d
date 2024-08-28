@@ -37,8 +37,8 @@ export default function Modelss({ texture, editandcreate, orbitControls }) {
     const container = containerRef.current;
     const width = container.clientWidth;
     const height = container.clientHeight;
-    const color = new THREE.Color(0x41117e); // Color hexadecimal
-    const alpha = 0.6; // Opacidad (0 es completamente transparente, 1 es completamente opaco)
+    const color = new THREE.Color(0x41117e);
+    const alpha = 0.6; 
     renderer.setClearColor(color, alpha);
     renderer.setSize(width, height);
 
@@ -47,12 +47,12 @@ export default function Modelss({ texture, editandcreate, orbitControls }) {
     /*  camera.position.set(0, 20, 100); */
 
     const width2 = window.innerWidth;
-    camera.position.set(0, 20, 50);
-    /* if (width2 < 768) {
+  
+    if (width2 < 768) {
       camera.position.set(0, 20, 100);
     } else {
       camera.position.set(0, 20, 50);
-    } */
+    } 
 
     console.log(width2);
     const loader = new GLTFLoader();
@@ -135,7 +135,7 @@ export default function Modelss({ texture, editandcreate, orbitControls }) {
 
   return (
     <div className={`neon-border`}>
-      <div ref={containerRef} className={`w-[300px] h-[300px] `}></div>
+      <div ref={containerRef} className={`w-[300px] h-[300px]`}></div>
     </div>
   );
 }

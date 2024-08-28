@@ -115,6 +115,7 @@ console.log(currentGatos)
                 }`}
               >
                   <Modelss
+                  orbitControls={false}
                   texture={gato.textura}
                   editandcreate={false}
                   
