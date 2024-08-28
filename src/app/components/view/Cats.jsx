@@ -37,7 +37,7 @@ const {resetSelectedValue} =MichiCreateAndEditedHook()
   };
 console.log(currentGatos)
   if (loading) {
-    return <div className="bg-black text-white relative h-screen w-full">
+    return <div className="bg-black text-white relative h-screen w-full  fondo-content">
       <div className="absolute inset-0 flex flex-col justify-center items-center">
     <p className="hollow-neon-text text-3xl mb-4">cargando...</p>
     <Image src="/texture/tte.png" width={128} height={128} alt="Cargando" />
@@ -46,7 +46,7 @@ console.log(currentGatos)
         
   } else {
     return (
-      <div className="flex">
+      <div className="flex fondo-content  justify-center">
         {modal.delete && (
           <div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
             <div class="bg-white p-6 rounded-lg shadow-lg w-80">
@@ -54,13 +54,13 @@ console.log(currentGatos)
                 quieres eliminar a {infoModal.name}
               </h2>
               <button
-                class="bg-blue-500 text-white py-2 px-4 rounded"
+                class="bg-blue-500 text-white py-2 px-4 rounded "
                 onClick={() => gatosDelete(infoModal.id)}
               >
                 Emilinar
               </button>
               <button
-                class="bg-blue-500 text-white py-2 px-4 rounded"
+                class="bg-blue-500 text-white py-2 px-4 rounded "
                 onClick={() => setModal(prevState => ({
                   ...prevState,
                   delete: false
@@ -99,8 +99,9 @@ console.log(currentGatos)
           ></div>
         )}
 
-        <div className="flex flex-col">
-          <div className="flex">
+        <div className="flex flex-col items-center">
+         
+          <div className="grid lg:grid-cols-3 lg:gap-3 grid-cols-1 gap-1 justify-center">
             {currentGatos.map((gato, index) => (
               <div
                 key={gato.id}
@@ -120,19 +121,19 @@ console.log(currentGatos)
                 <div className="space-x-2">
                   <button
                     onClick={() => gatofind(gato.id)}
-                    className="bg-black text-white p-2"
+                    className="bg-black text-white p-2 neon-border-editar"
                   >
                     editar
                   </button>
                   <button
                     onClick={() => gatoModal(gato.id,'delete')}
-                    className="bg-black text-white p-2"
+                    className="bg-transparent text-white p-2 neon-border2"
                   >
                     eliminar
                   </button>
                   <button
                     onClick={() => gatoModal(gato.id,'view')}
-                    className="bg-black text-white p-2"
+                    className="bg-black text-white p-2 neon-border-ver"
                   >
                     ver
                   </button>
@@ -140,13 +141,15 @@ console.log(currentGatos)
               </div>
             ))}
           </div>
-          <button
-            className="border-[1px] border-black"
+         
+          <div>
+        <button
+            className=""
             onClick={updateNew}
           >
             crear
           </button>
-
+          </div>
           <div className="pagination">
             {Array.from({ length: totalPages }, (_, index) => (
               <button
@@ -163,6 +166,9 @@ console.log(currentGatos)
             ))}
           </div>
         </div>
+
+
+       
       </div>
     );
   }

@@ -32,17 +32,19 @@ export default function Modelss({
     );
     const renderer = new THREE.WebGLRenderer();
     /*  scene.background = new THREE.Color(0xffffff); */
-    const loader2 = new THREE.TextureLoader();
+   /*  const loader2 = new THREE.TextureLoader();
     loader2.load(
       "/texture/Pixel Art Wallpapers - post.jpeg",
       function (texture) {
         scene.background = texture;
       }
-    );
+    ); */
     const container = containerRef.current;
     const width = container.clientWidth;
     const height = container.clientHeight;
-
+const color = new THREE.Color(0x41117e); // Color hexadecimal
+const alpha = 0.6; // Opacidad (0 es completamente transparente, 1 es completamente opaco)
+renderer.setClearColor(color, alpha);
     renderer.setSize(width, height);
 
     container.appendChild(renderer.domElement);
@@ -128,10 +130,10 @@ export default function Modelss({
   }, [!editandcreate && texture]);
 
   return (
-    <div className={`border-[3px] border-[#00FF00]  `}>
+    <div className={`neon-border`}>
       <div
         ref={containerRef}
-        className={`w-[300px] h-[300px] test-${index} `}
+        className={`w-[300px] h-[300px]`}
       ></div>
     </div>
   );
