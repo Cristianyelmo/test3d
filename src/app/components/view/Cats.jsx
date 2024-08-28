@@ -46,7 +46,7 @@ console.log(currentGatos)
         
   } else {
     return (
-      <div className="flex fondo-content  justify-center">
+      <div className="flex   justify-center items-center h-full mt-20">
         {modal.delete && (
           <div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
             <div class="bg-white p-6 rounded-lg shadow-lg w-80">
@@ -98,9 +98,11 @@ console.log(currentGatos)
   }`}
           ></div>
         )}
-
+      
         <div className="flex flex-col items-center">
-         
+       
+        <p>pet</p>
+     
           <div className="grid lg:grid-cols-3 lg:gap-3 grid-cols-1 gap-1 justify-center">
             {currentGatos.map((gato, index) => (
               <div
@@ -113,7 +115,7 @@ console.log(currentGatos)
                   texture={gato.textura}
                   editandcreate={false}
                   index={gato.id}
-                />
+                /> 
                 <p>{gato.name}</p>
                 <p className="text-black">{gato.puntaje}</p>
                 <p className="text-black">{gato.premios}</p>
@@ -141,8 +143,9 @@ console.log(currentGatos)
               </div>
             ))}
           </div>
+       
          
-          <div>
+        <div>
         <button
             className=""
             onClick={updateNew}
@@ -167,7 +170,7 @@ console.log(currentGatos)
           </div>
         </div>
 
-
+   
        
       </div>
     );

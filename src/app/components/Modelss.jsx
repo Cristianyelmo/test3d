@@ -49,8 +49,20 @@ renderer.setClearColor(color, alpha);
 
     container.appendChild(renderer.domElement);
 
-    camera.position.set(0, 20, 50);
+   /*  camera.position.set(0, 20, 100); */
+   
 
+   const width2 = window.innerWidth;
+
+   if(width2 < 768){
+    camera.position.set(0, 20, 100)
+   }else{
+    camera.position.set(0, 20, 50);
+   }
+
+
+
+console.log(width2)
     const loader = new GLTFLoader();
     loader.load(
       "/3d/chavo.glb",
@@ -64,6 +76,11 @@ renderer.setClearColor(color, alpha);
         glbRef2.current = gltf;
 
         arrayRef.current.push(model);
+
+
+       
+
+
 
         {
           texture.map((textureName) => {
@@ -111,6 +128,9 @@ renderer.setClearColor(color, alpha);
         console.error(error);
       }
     );
+
+
+    
 
     function animate() {
       const delta = clock.current.getDelta();

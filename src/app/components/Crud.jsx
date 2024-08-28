@@ -22,7 +22,7 @@ useEffect(()=>{
     <div className="bg-white">
     <div className={`bg-black absolute z-30 inset-0 opacity-presentation2 ${presentacioncrud}`}></div>
  
-<div className="  h-screen neon-border3 fondo">
+<div className="  min-h-screen neon-border3 fondo  ">
 {changepage == 'Cats' ? <Cats/> : changepage == 'EditedCats' ?  <EditedCats/> : changepage == 'CreateCats' && <CreateCats/>}
   </div>
 

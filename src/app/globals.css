@@ -227,10 +227,7 @@ body{
   background-color: transparent; /* Fondo transparente */
   
   /* Efecto de sombra suave en el texto */
-  text-shadow: 
-    0 0 1px #dd0303, 
-    0 0 2px #dd0303, 
-    0 0 3px #dd0303;
+  
 
   /* Efecto de neón en el borde */
   box-shadow: 
@@ -248,10 +245,7 @@ body{
   background-color: transparent; /* Fondo transparente */
   
   /* Efecto de sombra suave en el texto */
-  text-shadow: 
-    0 0 1px #fac81c, 
-    0 0 2px #fac81c, 
-    0 0 3px #fac81c;
+  
 
   /* Efecto de neón en el borde */
   box-shadow: 
@@ -269,10 +263,7 @@ body{
   background-color: transparent; /* Fondo transparente */
   
   /* Efecto de sombra suave en el texto */
-  text-shadow: 
-    0 0 1px #1774ff, 
-    0 0 2px #1774ff, 
-    0 0 3px #1774ff;
+ 
 
   /* Efecto de neón en el borde */
   box-shadow: 
@@ -290,22 +281,22 @@ body{
 
 
 .neon-border3 {
-  border: 2px solid #06ecec; /* Borde con el color deseado */
+  border: 2px solid #670097; /* Borde con el color deseado */
   background-color: black; /* Fondo negro */
-  color: #06ecec; /* Color del texto para combinar con el borde */
+  color: #670097; /* Color del texto para combinar con el borde */
   
   /* Sombra interna para crear el efecto de iluminación hacia adentro */
   box-shadow: 
-    inset 0 0 20px #06ecec, /* Sombra interna */
-    inset 0 0 50px #06ecec, /* Sombra interna */
-    0 0 20px #06ecec; /* Sombra externa suave para el brillo */
+    inset 0 0 20px #670097, /* Sombra interna */
+    inset 0 0 50px #670097, /* Sombra interna */
+    0 0 20px #670097; /* Sombra externa suave para el brillo */
 }
 
 
 
-.fondo {
-  position: relative; /* Necesario para que el pseudo-elemento se posicione correctamente */
-  background-image: url('/texture/geometric-neon-grid-pattern-glitch-effect-futuristic-abstract-background-of-retro-80s-90s-style-retrowave-synthwave-vaporwave-background-abstract-modern-design-isolated-illustration-vector.jpg');
+/* .fondo {
+  position: relative; 
+  background-image: url('/texture/retro.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -313,16 +304,16 @@ body{
   height: 100vh;
 }
 
-/* .fondo::before {
+.fondo::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); 
+  background-color: rgba(0, 0, 0, 0.6); 
   z-index: 1; 
-} */
+}  */
 
 
 .fondo-content {
