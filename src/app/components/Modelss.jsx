@@ -5,11 +5,7 @@ import * as THREE from "three";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { MichiCreateAndEditedHook } from "../context/MichiCreateAndEditedContext";
-export default function Modelss({
-  texture,
-  editandcreate,
-  orbitControls
-}) {
+export default function Modelss({ texture, editandcreate, orbitControls }) {
   const { modelRef2, glbRef2, mixersRef } = MichiCreateAndEditedHook();
   const modelRef = useRef(null);
   /*  const mixersRef = useRef([]); */
@@ -31,7 +27,7 @@ export default function Modelss({
     );
     const renderer = new THREE.WebGLRenderer();
     /*  scene.background = new THREE.Color(0xffffff); */
-   /*  const loader2 = new THREE.TextureLoader();
+    /*  const loader2 = new THREE.TextureLoader();
     loader2.load(
       "/texture/Pixel Art Wallpapers - post.jpeg",
       function (texture) {
@@ -41,27 +37,24 @@ export default function Modelss({
     const container = containerRef.current;
     const width = container.clientWidth;
     const height = container.clientHeight;
-const color = new THREE.Color(0x41117e); // Color hexadecimal
-const alpha = 0.6; // Opacidad (0 es completamente transparente, 1 es completamente opaco)
-renderer.setClearColor(color, alpha);
+    const color = new THREE.Color(0x41117e); // Color hexadecimal
+    const alpha = 0.6; // Opacidad (0 es completamente transparente, 1 es completamente opaco)
+    renderer.setClearColor(color, alpha);
     renderer.setSize(width, height);
 
     container.appendChild(renderer.domElement);
 
-   /*  camera.position.set(0, 20, 100); */
-   
+    /*  camera.position.set(0, 20, 100); */
 
-   const width2 = window.innerWidth;
+    const width2 = window.innerWidth;
 
-   if(width2 < 768){
-    camera.position.set(0, 20, 100)
-   }else{
-    camera.position.set(0, 20, 50);
-   }
+    if (width2 < 768) {
+      camera.position.set(0, 20, 100);
+    } else {
+      camera.position.set(0, 20, 50);
+    }
 
-
-
-console.log(width2)
+    console.log(width2);
     const loader = new GLTFLoader();
     loader.load(
       "/3d/chavo.glb",
@@ -75,11 +68,6 @@ console.log(width2)
         glbRef2.current = gltf;
 
         arrayRef.current.push(model);
-
-
-       
-
-
 
         {
           texture.map((textureName) => {
@@ -128,15 +116,12 @@ console.log(width2)
       }
     );
 
-
-    
-
     function animate() {
       const delta = clock.current.getDelta();
       mixersRef.current.forEach((mixer) => mixer.update(delta));
       if (modelRef.current && glbRef.current) {
         modelRef.current.rotation.y += 0.01;
-      } 
+      }
       renderer.render(scene, camera);
     }
 
@@ -150,10 +135,7 @@ console.log(width2)
 
   return (
     <div className={`neon-border`}>
-      <div
-        ref={containerRef}
-        className={`w-[300px] h-[300px] `}
-      ></div>
+      <div ref={containerRef} className={`w-[300px] h-[300px] `}></div>
     </div>
   );
 }

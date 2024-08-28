@@ -47,7 +47,7 @@ console.log(currentGatos)
   } 
 
 
-  
+
     return (
       <div className="flex   justify-center items-center h-full mt-20">
         {modal.delete && (
@@ -104,7 +104,7 @@ console.log(currentGatos)
       
         <div className="flex flex-col items-center">
        
-        <p>pet</p>
+        
      
           <div className="grid lg:grid-cols-3 lg:gap-3 grid-cols-1 gap-1 justify-center">
             {currentGatos.map((gato, index) => (
@@ -114,11 +114,14 @@ console.log(currentGatos)
                   idanimation == gato.id ? (setDelete(true), "animation-delete z-50"): "animation-open"
                 }`}
               >
-                <Modelss
+               {/*   <Modelss
                   texture={gato.textura}
                   editandcreate={false}
                   
-                /> 
+                />  */} 
+                <div className={`w-[300px] h-[300px] `}>
+
+                </div>
                 <p>{gato.name}</p>
                 <p className="text-black">{gato.puntaje}</p>
                 <p className="text-black">{gato.premios}</p>
