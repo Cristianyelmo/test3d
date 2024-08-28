@@ -44,7 +44,10 @@ console.log(currentGatos)
   </div>
       </div>;
         
-  } else {
+  } 
+
+
+  
     return (
       <div className="flex   justify-center items-center h-full mt-20">
         {modal.delete && (
@@ -114,7 +117,7 @@ console.log(currentGatos)
                 <Modelss
                   texture={gato.textura}
                   editandcreate={false}
-                  index={gato.id}
+                  
                 /> 
                 <p>{gato.name}</p>
                 <p className="text-black">{gato.puntaje}</p>
@@ -174,5 +177,5 @@ console.log(currentGatos)
        
       </div>
     );
-  }
+ 
 }
