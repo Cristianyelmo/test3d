@@ -298,6 +298,41 @@ body{
 
 
 
+
+
+
+
+
+.neon-border-input {
+  color: #24c2d3; /* Color de base del texto */
+  border: 1px solid #24c2d3; /* Borde con el color deseado */
+  
+  background-color: black; /* Fondo transparente */
+  
+  /* Efecto de sombra suave en el texto */
+  
+
+  /* Efecto de neón en el borde */
+  box-shadow: 
+    0 0 2px #24c2d3, /* Sombra suave en el borde */
+    0 0 5px #24c2d3, 
+    0 0 10px #24c2d3,
+    0 0 2px #24c2d3 inset; /* Sombra interna para un brillo adicional */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .neon-border3 {
   border: 2px solid #47ecec; /* Borde con el color deseado */
   background-color: black; /* Fondo negro */
