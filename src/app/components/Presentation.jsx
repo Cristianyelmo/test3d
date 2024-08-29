@@ -22,12 +22,15 @@ export default function Presentation() {
 
   
  useEffect(()=>{
+
+  if (typeof window !== 'undefined') {
 setTimeout(() => {
   setPresentationanimation('opacity-presentation')
 }, 5000);
 
 
 setTimeout(() => {
+  
   if (modelRef.current && glbRef.current) {
     modelRef.current.rotation.y += 0
 
@@ -42,12 +45,15 @@ setTimeout(() => {
 }, 4000);
 
 setTimeout(() => {
+
     setChangePagePresentation(false)
 }, 8000);
+}
   },[])    
 
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 800);
     const renderer = new THREE.WebGLRenderer(); 
@@ -179,6 +185,7 @@ modelRef.current.traverse((node) => {
     return () => {
       container.removeChild(renderer.domElement);
     };
+  }
   }, []);
 
 
