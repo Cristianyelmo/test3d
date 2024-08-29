@@ -49,7 +49,7 @@ console.log(currentGatos)
 
 
     return (
-      <div className="flex   justify-center items-center h-full mt-20">
+      <div className="flex fondo-content  justify-center items-center min-h-screen mt-10">
         {modal.delete && (
           <div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
             <div class="bg-white p-6 rounded-lg shadow-lg w-80">
@@ -104,9 +104,18 @@ console.log(currentGatos)
       
         <div className="flex flex-col items-center">
        
-        
+        <div className="flex ">
+          
+          <button
+              className="neon-border-crear p-2"
+              onClick={updateNew}
+            >
+              crear
+            </button>
+            
+            </div>
      
-          <div className="grid lg:grid-cols-3 lg:gap-3 grid-cols-1 gap-1 justify-center">
+          <div className="grid lg:grid-cols-3 lg:gap-3 grid-cols-1 gap-1 justify-center lg:space-y-0 space-y-10">
             {currentGatos.map((gato, index) => (
               <div
                 key={gato.id}
@@ -123,7 +132,10 @@ console.log(currentGatos)
                 {/* <div className={`w-[300px] h-[300px] `}>
 
                 </div> */}
-                <p>{gato.name}</p>
+                
+               
+                <p className="">{gato.name}</p>
+               
                 <p className="text-black">{gato.puntaje}</p>
                 <p className="text-black">{gato.premios}</p>
                 <button onClick={() => AddScore(gato.id)}>puntaje</button>
@@ -150,17 +162,10 @@ console.log(currentGatos)
               </div>
             ))}
           </div>
-       
          
-        <div>
-        <button
-            className=""
-            onClick={updateNew}
-          >
-            crear
-          </button>
-          </div>
-          <div className="pagination">
+         
+       
+          <div className="pagination mt-5">
             {Array.from({ length: totalPages }, (_, index) => (
               <button
                 key={index + 1}

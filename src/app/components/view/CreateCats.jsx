@@ -5,6 +5,7 @@ import * as THREE from "three";
 import Modelss from "../Modelss";
 import { MichiHook } from "../../context/MichiContext";
 import { MichiCreateAndEditedHook } from "@/app/context/MichiCreateAndEditedContext";
+import Image from "next/image";
 
 export default function CreateCats() {
  const 
@@ -28,16 +29,19 @@ export default function CreateCats() {
  
  
 if(!loadingcreate){
-  return(
-    <div>...espere</div>
-  )
+  return <div className="bg-black text-white relative h-screen w-full  fondo-content">
+  <div className="absolute inset-0 flex flex-col justify-center items-center">
+<p className="hollow-neon-text text-3xl mb-4">cargando...</p>
+<Image src="/texture/tte.png" width={128} height={128} alt="Cargando" />
+</div>
+  </div>;
 }else{
 
   
   
 
   return (
-    <div className="flex">
+    <div className="flex fondo-content">
       <button onClick={Volver}>volver</button>
       <select
         value={selectedValue[0].name}
