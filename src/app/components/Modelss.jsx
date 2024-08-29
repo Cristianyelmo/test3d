@@ -18,6 +18,7 @@ export default function Modelss({ texture, editandcreate, orbitControls }) {
   const arrayRef = useRef([]);
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -131,6 +132,7 @@ export default function Modelss({ texture, editandcreate, orbitControls }) {
       renderer.setAnimationLoop(null); //
       container.removeChild(renderer.domElement);
     };
+  }
   }, [!editandcreate && texture]);
 
   return (
