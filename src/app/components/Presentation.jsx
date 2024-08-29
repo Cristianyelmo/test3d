@@ -17,25 +17,7 @@ export default function Presentation() {
   const [loadProgress, setLoadProgress] = useState(0);
   const [animation, setAnimation] = useState('dfd');
   const containerRef = useRef(null);
- /*   useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimation(prevAnimation => (prevAnimation === 'dfd' ? 'dfd-2' : 'dfd'));
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, []); 
-  useEffect(() => {
-    const tex = new THREE.TextureLoader().load(`/texture/${animation}.png`);
-    tex.flipY = false;
-
-    if (modelRef.current) {
-      modelRef.current.traverse((node) => {
-        if (node.isMesh && node.name == 'Cube005') {
-          node.material.map = tex;
-        }
-      });
-    }
-  }, [animation]);  */
+ 
   const [presentationanimation,setPresentationanimation]= useState('')
 
   
@@ -68,7 +50,9 @@ setTimeout(() => {
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 800);
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer(); 
+ 
+
    /*  renderer.setSize(window.innerWidth, window.innerHeight); */
    /*  document.body.appendChild(renderer.domElement); */
     const container = containerRef.current;
@@ -177,15 +161,13 @@ modelRef.current.traverse((node) => {
     function animate() {
 
       if (moveCameraForward && camera.position.z > 55) {
-        camera.position.z -= 0.1; // Ajusta la velocidad de la cámara
+        camera.position.z -= 0.1; 
       } else {
-        moveCameraForward = false; // Detén el movimiento de la cámara
+        moveCameraForward = false; 
       }
       const delta = clock.current.getDelta();
       mixersRef.current.forEach(mixer => mixer.update(delta));
-   /*    if (modelRef.current && glbRef.current) {
-        modelRef.current.rotation.y += 0.01;
-      } */
+   
 
 
         

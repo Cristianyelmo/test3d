@@ -103,17 +103,16 @@ console.log(currentGatos)
         )}
       
         <div className="flex flex-col items-center">
-       
-        <div className="flex ">
-          
-          <button
-              className="neon-border-crear p-2"
-              onClick={updateNew}
-            >
-              crear
-            </button>
-            
-            </div>
+        <h1 className="neon-text text-4xl  ">PetMaker</h1>
+        <div className="relative mb-14 w-full">
+  <button
+    className="neon-border-crear p-2 absolute right-0"
+    onClick={updateNew}
+  >
+    crear
+  </button>
+</div>
+
      
           <div className="grid lg:grid-cols-3 lg:gap-3 grid-cols-1 gap-1 justify-center lg:space-y-0 space-y-10">
             {currentGatos.map((gato, index) => (

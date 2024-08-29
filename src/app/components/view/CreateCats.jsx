@@ -43,7 +43,7 @@ if(!loadingcreate){
   return (
     <div className="flex flex-col lg:flex-row fondo-content justify-center items-center min-h-screen ">
        <button onClick={Volver}>volver</button>
-      <div className="flex flex-col items-center">
+      <div className="animation-open flex flex-col items-center">
    
    <Modelss  texture={selectedValue} editandcreate={true} />
 
