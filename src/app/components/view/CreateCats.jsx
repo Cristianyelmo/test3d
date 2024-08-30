@@ -13,7 +13,7 @@ export default function CreateCats() {
     CreatedArray,selectedValuetext, setSelectedValuetext,
     selectedValue,
     changeTexture,resetSelectedValue,handleUpdate,Volver,loadingcreate,setLoadingCreate,
-    errorMessage
+    errorMessage,createandediteloading
   }
   = MichiCreateAndEditedHook()
 
@@ -43,8 +43,16 @@ if(!loadingcreate){
 
   return (
     <div className="flex flex-col lg:flex-row fondo-content justify-center items-center min-h-screen ">
+
+       { createandediteloading &&  <div
+            className={`fixed inset-0 z-40 flex items-center justify-center bg-gray-900 bg-opacity-70 
+  transition-opacity duration-500 ease-in-out`}
+          ></div>}
+        
+
+
        <button className="neon-border-volver p-4 mr-4 mb-4" onClick={Volver}>volver</button>
-      <div className="animation-open flex flex-col items-center">
+      <div className="animation-open z-50 flex flex-col items-center">
    
    <Modelss  texture={selectedValue} editandcreate={true} />
 
@@ -52,7 +60,7 @@ if(!loadingcreate){
 
  <input
  className="w-[300px] neon-border-input mt-4 p-2"
- 
+ readOnly={createandediteloading}
      onChange={(e) => {
        setSelectedValuetext(e.target.value);
      }}
@@ -60,10 +68,12 @@ if(!loadingcreate){
      value={selectedValuetext}
    />
    </div>
-
-<div className="space-y-4 ml-10 mt-10 lg:mt-0 ">
-
-      <div>
+<div className="flex flex-col items-center lg:items-start">
+<div className="space-y-4 ml-10 mt-2 lg:mt-0 ">
+<div className={`relative mb-10  ${errorMessage == '' && 'hidden'}`}>
+<p className=" text-[#dd0303] absolute">{errorMessage}</p>
+</div>
+      <div >
 <p className="text-[#fac81c]">Color</p>
       <select
         value={selectedValue[0].name}
@@ -133,13 +143,15 @@ if(!loadingcreate){
       </div>
      
       <button className="neon-border-crear p-4 mt-10" onClick={CreatedArray}>crear</button>
-<p className="text-white">{errorMessage}</p>
+<div>
+  
+      </div>
+     
+      </div>
+
       </div>
 
      
-
-
-       
       
     </div>
   );

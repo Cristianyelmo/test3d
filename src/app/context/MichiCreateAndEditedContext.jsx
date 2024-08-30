@@ -79,16 +79,17 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
     setErrorMessage('')
   };
   const [errorMessage, setErrorMessage] = useState('');
+  const[createandediteloading,setCreateandEditLoading]=useState(false)
   const CreatedArray = () => {
-    
+   
     if (selectedValuetext.trim() === '') {
-      setErrorMessage('El campo no puede estar vacío.');
+      setErrorMessage('Nombre Vacio');
     } else if (selectedValuetext.length > 10) {
-      setErrorMessage('El texto no puede tener más de 10 caracteres.');
+      setErrorMessage('maximo 10 caracteres');
     } else {
       setErrorMessage('');
      
-      
+      setCreateandEditLoading(true)
     
     const newObject = {
       name: selectedValuetext,
@@ -111,6 +112,7 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
     move3d();
 
     setTimeout(() => {
+      setCreateandEditLoading(false)
       setChangepage("Cats");
     }, 3000);
   }
@@ -160,6 +162,7 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
       setErrorMessageEdit('El texto no puede tener más de 10 caracteres.');
     } else {
       setErrorMessageEdit('')
+      setCreateandEditLoading(true)
     const EditMichisObject = {
       name: selectedValueEdittext,
       color: selectedValueEdit.color,
@@ -183,6 +186,7 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
     move3d();
 
     setTimeout(() => {
+      setCreateandEditLoading(false)
       setChangepage("Cats");
     }, 3000);
   }
@@ -218,7 +222,8 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
         find,
         loadingcreate,setLoadingCreate,
         errorMessage,
-        errorMessageedit
+        errorMessageedit,
+        createandediteloading
       }}
     >
       {children}

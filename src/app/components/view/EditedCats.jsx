@@ -14,7 +14,7 @@ export default function EditedCats() {
   } = MichiHook();
 
   const {changeTexture,GetidMichix,Volver,selectedValueEdit, setselectedValueEdit,
-    selectedValueEdittext, setselectedValueEdittext,EditedArray,loadingedited,find,errorMessageedit} = MichiCreateAndEditedHook()
+    selectedValueEdittext, setselectedValueEdittext,EditedArray,loadingedited,find,errorMessageedit, createandediteloading} = MichiCreateAndEditedHook()
   useEffect(() => {
     console.log(find)
 
@@ -49,11 +49,15 @@ export default function EditedCats() {
   } else {
     return (
       <div className="flex flex-col fondo-content  lg:flex-row fondo-content justify-center items-center min-h-screen">
+         { createandediteloading &&  <div
+            className={`fixed inset-0 z-40 flex items-center justify-center bg-gray-900 bg-opacity-70 
+  transition-opacity duration-500 ease-in-out`}
+          ></div>}
         <button className="neon-border-volver p-4 mr-4 mb-4" onClick={Volver}>volver</button>
-        <div className="animation-open flex flex-col items-center">
+        <div className="animation-open  z-50 flex flex-col items-center">
           <Modelss texture={find.textura} editandcreate={true} />
 
-          <input
+          <input  readOnly={createandediteloading}
            className="w-[300px] neon-border-input mt-4 p-2"
             onChange={(e) => {
               setselectedValueEdittext(e.target.value);
