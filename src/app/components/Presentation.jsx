@@ -184,6 +184,7 @@ modelRef.current.traverse((node) => {
 
     return () => {
       container.removeChild(renderer.domElement);
+      renderer.dispose();
     };
   }
   }, []);
