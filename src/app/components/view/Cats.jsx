@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 import Modelss from "../Modelss";
 import { MichiHook } from "../../context/MichiContext";

@@ -1,10 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import * as THREE from "three";
 import Modelss from "../Modelss";
 import { MichiHook } from "../../context/MichiContext";
-import { GetIdMichi, UptadeMichi } from "@/app/services/Crud.service";
 import { MichiCreateAndEditedHook } from "@/app/context/MichiCreateAndEditedContext";
 import Image from "next/image";
 

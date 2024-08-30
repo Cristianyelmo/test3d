@@ -1,7 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import * as THREE from "three";
+import { useEffect, useRef } from "react";
+
 import Modelss from "../Modelss";
 import { MichiHook } from "../../context/MichiContext";
 import { MichiCreateAndEditedHook } from "@/app/context/MichiCreateAndEditedContext";

@@ -1,7 +1,7 @@
 // context/HomeContext.js
 "use client";
-import { createContext, useContext, useState, useRef } from "react";
-import * as THREE from "three";
+import { createContext, useContext, useState} from "react";
+
 
 import {
   AddScoreMichi,
