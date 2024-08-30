@@ -25,7 +25,8 @@ export default function Cats() {
     modal,
     deletex,
     setDelete,
-    addscore
+    addscore,
+    scoreid
   } = MichiHook();
 const {resetSelectedValue} =MichiCreateAndEditedHook()
   useEffect(() => {
@@ -141,7 +142,7 @@ console.log(currentGatos)
                 <p className="text-2xl">{gato.puntaje}</p>
         
                 <button disabled={addscore} onClick={() => AddScore(gato.id)}>
-                <Image className={`${addscore && 'rotate-start'}`} src="/texture/star.webp" width={30} height={30} />
+                <Image className={`${scoreid == gato.id && addscore && 'rotate-start'}`} src="/texture/star.webp" width={30} height={30} />
                 </button>
                  
                 </div>

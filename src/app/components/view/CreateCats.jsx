@@ -12,7 +12,8 @@ export default function CreateCats() {
   {
     CreatedArray,selectedValuetext, setSelectedValuetext,
     selectedValue,
-    changeTexture,resetSelectedValue,handleUpdate,Volver,loadingcreate,setLoadingCreate
+    changeTexture,resetSelectedValue,handleUpdate,Volver,loadingcreate,setLoadingCreate,
+    errorMessage
   }
   = MichiCreateAndEditedHook()
 
@@ -132,7 +133,7 @@ if(!loadingcreate){
       </div>
      
       <button className="neon-border-crear p-4 mt-10" onClick={CreatedArray}>crear</button>
-
+<p className="text-white">{errorMessage}</p>
       </div>
 
      

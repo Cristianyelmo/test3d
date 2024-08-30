@@ -14,7 +14,7 @@ export default function EditedCats() {
   } = MichiHook();
 
   const {changeTexture,GetidMichix,Volver,selectedValueEdit, setselectedValueEdit,
-    selectedValueEdittext, setselectedValueEdittext,EditedArray,loadingedited,find} = MichiCreateAndEditedHook()
+    selectedValueEdittext, setselectedValueEdittext,EditedArray,loadingedited,find,errorMessageedit} = MichiCreateAndEditedHook()
   useEffect(() => {
     console.log(find)
 
@@ -143,6 +143,7 @@ export default function EditedCats() {
 
 
         <button className="neon-border-crear p-4 mt-10" onClick={EditedArray}>editar</button>
+        <p>{errorMessageedit}</p>
         </div>
        
 

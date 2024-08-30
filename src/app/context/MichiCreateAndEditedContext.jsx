@@ -76,10 +76,19 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
   const resetSelectedValue = () => {
     setSelectedValue(initialState);
     setSelectedValuetext("");
+    setErrorMessage('')
   };
-
+  const [errorMessage, setErrorMessage] = useState('');
   const CreatedArray = () => {
     
+    if (selectedValuetext.trim() === '') {
+      setErrorMessage('El campo no puede estar vacío.');
+    } else if (selectedValuetext.length > 10) {
+      setErrorMessage('El texto no puede tener más de 10 caracteres.');
+    } else {
+      setErrorMessage('');
+     
+      
     
     const newObject = {
       name: selectedValuetext,
@@ -104,6 +113,7 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
     setTimeout(() => {
       setChangepage("Cats");
     }, 3000);
+  }
   };
 
   const handleUpdate = (e, cubex) => {
@@ -140,8 +150,16 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
     color: "",
     puntaje: 0,
   });
+  const [errorMessageedit, setErrorMessageEdit] = useState('');
   const [selectedValueEdittext, setselectedValueEdittext] = useState("");
   const EditedArray = () => {
+
+    if (selectedValueEdittext.trim() === '') {
+      setErrorMessageEdit('El campo no puede estar vacío.');
+    } else if (selectedValueEdittext.length > 10) {
+      setErrorMessageEdit('El texto no puede tener más de 10 caracteres.');
+    } else {
+      setErrorMessageEdit('')
     const EditMichisObject = {
       name: selectedValueEdittext,
       color: selectedValueEdit.color,
@@ -167,6 +185,7 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
     setTimeout(() => {
       setChangepage("Cats");
     }, 3000);
+  }
   };
 
 
@@ -197,7 +216,9 @@ export const MichiCreateAndEditedProvider = ({ children }) => {
         loadingedited,
         setLoadingEdited,
         find,
-        loadingcreate,setLoadingCreate
+        loadingcreate,setLoadingCreate,
+        errorMessage,
+        errorMessageedit
       }}
     >
       {children}

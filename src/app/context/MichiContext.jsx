@@ -38,17 +38,22 @@ export const MichiProvider = ({ children }) => {
 
   const AddScore = async (id) => {
     setAddscore(true)
+    setScoreId(id)
     try {
       await AddScoreMichi(id);
     } catch (error) {
       console.error;
     } finally {
       GetallMichis();
-      setAddscore(false)
+    
+        setAddscore(false)
+    
+      
     }
   };
 
   const [addscore,setAddscore]= useState(false)
+  const [scoreid,setScoreId]= useState()
 
   const [loading, setLoading] = useState(true);
 
@@ -151,7 +156,8 @@ export const MichiProvider = ({ children }) => {
         setModal,
         modal,
         deletex,setDelete,
-        addscore
+        addscore,
+        scoreid
       }}
     >
       {children}
