@@ -294,6 +294,23 @@ body{
 
 
 
+.neon-border-volver {
+  color:#24c2d3 ; /* Color de base del texto */
+  border: 1px solid #24c2d3; /* Borde con el color deseado */
+  
+  background-color: transparent; /* Fondo transparente */
+  
+  /* Efecto de sombra suave en el texto */
+ 
+
+  /* Efecto de neón en el borde */
+  box-shadow: 
+    0 0 2px #24c2d3, /* Sombra suave en el borde */
+    0 0 5px #24c2d3, 
+    0 0 10px #24c2d3,
+    0 0 2px #24c2d3 inset; /* Sombra interna para un brillo adicional */
+}
+
 
 
 
@@ -398,3 +415,18 @@ body{
 
 
 
+ /* Definir la animación */
+ @keyframes rotate360 {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+
+.rotate-start {
+  filter: drop-shadow(0 0 10px #f7de08) drop-shadow(0 0 20px #f7de08) drop-shadow(0 0 30px #f7de08);
+  animation: rotate360 1s linear infinite;
+}

@@ -97,7 +97,7 @@ export default function Modelss({ texture, editandcreate, orbitControls }) {
           });
         }
         if (orbitControls == true) {
-          camera.position.set(60, 20, 20);
+          camera.position.set(0, 20, 100);
           const controls = new OrbitControls(camera, renderer.domElement);
           controls.enableDamping = true;
           controls.dampingFactor = 0.9;

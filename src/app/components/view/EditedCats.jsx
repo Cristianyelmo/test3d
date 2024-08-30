@@ -49,7 +49,7 @@ export default function EditedCats() {
   } else {
     return (
       <div className="flex flex-col fondo-content  lg:flex-row fondo-content justify-center items-center min-h-screen">
-        <button onClick={Volver}>volver</button>
+        <button className="neon-border-volver p-4 mr-4 mb-4" onClick={Volver}>volver</button>
         <div className="animation-open flex flex-col items-center">
           <Modelss texture={find.textura} editandcreate={true} />
 
