@@ -183,6 +183,7 @@ modelRef.current.traverse((node) => {
     renderer.setAnimationLoop(animate);
 
     return () => {
+      renderer.setAnimationLoop(null);
       container.removeChild(renderer.domElement);
       renderer.dispose();
     };
