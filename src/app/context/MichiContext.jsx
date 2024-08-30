@@ -112,17 +112,25 @@ export const MichiProvider = ({ children }) => {
   const ITEMS_PER_PAGE = 3;
 
   const [currentPage, setCurrentPage] = useState(1);
-
+  const totalPages = Math.ceil(gatos.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
 
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentGatos = gatos.slice(startIndex, endIndex);
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
-  const totalPages = Math.ceil(gatos.length / ITEMS_PER_PAGE);
+  
+  
+  const handlePageChange = (page) => {
+    if (page > 0 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+  const visiblePages = Array.from({ length: 3 }, (_, i) => i + currentPage  - 1).filter(page => page >= 1 && page <= totalPages);
+
+  
+
+
   const [deletex,setDelete] = useState(false)
   return (
     <MichiContext.Provider
@@ -157,7 +165,8 @@ export const MichiProvider = ({ children }) => {
         modal,
         deletex,setDelete,
         addscore,
-        scoreid
+        scoreid,
+        visiblePages
       }}
     >
       {children}

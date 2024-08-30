@@ -26,7 +26,8 @@ export default function Cats() {
     deletex,
     setDelete,
     addscore,
-    scoreid
+    scoreid,
+    visiblePages
   } = MichiHook();
 const {resetSelectedValue} =MichiCreateAndEditedHook()
   useEffect(() => {
@@ -172,21 +173,51 @@ console.log(currentGatos)
          
          
        
-          <div className="pagination mt-5">
-            {Array.from({ length: totalPages }, (_, index) => (
-              <button
-                key={index + 1}
-                onClick={() => handlePageChange(index + 1)}
-                className={`mx-1 p-2 ${
-                  currentPage === index + 1
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-300"
-                }`}
-              >
-                {index + 1}
-              </button>
-            ))}
-          </div>
+          <div className="flex items-center justify-center mt-10 mb-10  ">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-3 py-1 neon-border  rounded-l disabled:opacity-50"
+        >
+          &lt;
+        </button>
+
+        {visiblePages.map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            className={`px-3 py-1 border-[#24c2d3] border-[1px]  ${page === currentPage ? 'bg-[#3b094d] text-white' : ''}`}
+          >
+            {page}
+          </button>
+        ))}
+
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-3 py-1 neon-border  rounded-r disabled:opacity-50"
+        >
+          &gt;
+        </button>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
 
    
