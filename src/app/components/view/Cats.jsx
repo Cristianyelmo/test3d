@@ -63,12 +63,12 @@ export default function Cats() {
             <h2 class="text-xl font-bold mb-4">
               quieres eliminar a {infoModal.name} ?
             </h2>
-            <div className="space-x-2">
+            <div className="flex space-x-2">
               <button
                 class=" text-white py-2 px-4 rounded neon-border2 "
                 onClick={() => gatosDelete(infoModal.id)}
               >
-                Emilinar
+                eliminar
               </button>
               <button
                 class="neon-border-ver text-white py-2 px-4 rounded "

@@ -66,7 +66,7 @@ export default function Presentation() {
 
       const loader = new GLTFLoader();
       loader.load(
-        "/3d/michimaker-spaceoka23.glb",
+        "/3d/presentation.glb",
         function (gltf) {
           const model = gltf.scene;
           model.scale.set(6.5, 6.5, 6.5);

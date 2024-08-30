@@ -47,7 +47,7 @@ export default function Modelss({ texture, editandcreate, orbitControls }) {
 
       const loader = new GLTFLoader();
       loader.load(
-        "/3d/chavo.glb",
+        "/3d/pet.glb",
         function (gltf) {
           const model = gltf.scene;
           model.scale.set(10, 10, 10);
